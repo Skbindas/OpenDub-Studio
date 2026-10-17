@@ -1,0 +1,3 @@
+# Install in a separate venv to protect the active Studio / diarization runtime.
+omnivoice==0.2.1
+psutil>=7,<8

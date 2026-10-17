@@ -1,0 +1,92 @@
+{
+  "tier": "Tier 2 - Scene-Level QA",
+  "scene_count": 4,
+  "pass_count": 3,
+  "warning_count": 1,
+  "fail_count": 0,
+  "max_scene_timing_drift_sec": 0.0,
+  "total_scene_overlap_collisions": 0,
+  "status": "WARNING",
+  "scenes": [
+    {
+      "scene_id": "SCENE_001",
+      "start": 0.32,
+      "end": 16.6,
+      "segment_count": 9,
+      "characters_present": [
+        "CHAR_001",
+        "CHAR_002"
+      ],
+      "overlap_collisions": 0,
+      "max_adjacent_loudness_jump_db": 14.45,
+      "smooth_loudness_transitions": true,
+      "background_stem_ducking_consistent": true,
+      "character_voice_distinct": true,
+      "max_emotional_intensity_delta": 0.3,
+      "emotional_continuity": true,
+      "scene_timing_drift_sec": 0.0,
+      "scene_drift_within_limit": true,
+      "status": "PASS"
+    },
+    {
+      "scene_id": "SCENE_002",
+      "start": 21.09,
+      "end": 24.399,
+      "segment_count": 3,
+      "characters_present": [
+        "CHAR_002",
+        "CHAR_003"
+      ],
+      "overlap_collisions": 0,
+      "max_adjacent_loudness_jump_db": 4.71,
+      "smooth_loudness_transitions": true,
+      "background_stem_ducking_consistent": true,
+      "character_voice_distinct": true,
+      "max_emotional_intensity_delta": 0.09,
+      "emotional_continuity": true,
+      "scene_timing_drift_sec": 0.0,
+      "scene_drift_within_limit": true,
+      "status": "PASS"
+    },
+    {
+      "scene_id": "SCENE_003",
+      "start": 35.03,
+      "end": 73.22,
+      "segment_count": 15,
+      "characters_present": [
+        "CHAR_001",
+        "CHAR_002",
+        "CHAR_003"
+      ],
+      "overlap_collisions": 0,
+      "max_adjacent_loudness_jump_db": 24.56,
+      "smooth_loudness_transitions": false,
+      "background_stem_ducking_consistent": true,
+      "character_voice_distinct": true,
+      "max_emotional_intensity_delta": 0.21,
+      "emotional_continuity": true,
+      "scene_timing_drift_sec": 0.0,
+      "scene_drift_within_limit": true,
+      "status": "WARNING"
+    },
+    {
+      "scene_id": "SCENE_004",
+      "start": 81.57,
+      "end": 83.71,
+      "segment_count": 1,
+      "characters_present": [
+        "CHAR_002"
+      ],
+      "overlap_collisions": 0,
+      "max_adjacent_loudness_jump_db": 0.0,
+      "smooth_loudness_transitions": true,
+      "background_stem_ducking_consistent": true,
+      "character_voice_distinct": true,
+      "max_emotional_intensity_delta": 0.0,
+      "emotional_continuity": true,
+      "scene_timing_drift_sec": 0.0,
+      "scene_drift_within_limit": true,
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "total_duration_sec": 8998.4,
+  "sample_count": 5,
+  "samples": [
+    {
+      "sample_id": "SAMPLE_01_OPENING",
+      "category": "first_2_minutes",
+      "start_sec": 0.0,
+      "end_sec": 120.0,
+      "duration_sec": 120.0,
+      "scene_id": "SCENE_001",
+      "rationale": "Opening vocal establishment, character voice introductions, and initial sync lock."
+    },
+    {
+      "sample_id": "SAMPLE_02_RAPID_DIALOGUE",
+      "category": "middle_rapid_dialogue_scene",
+      "start_sec": 4499.59,
+      "end_sec": 4502.899,
+      "duration_sec": 3.309,
+      "scene_id": "SCENE_161",
+      "rationale": "Highest turn-density dialogue window testing tempo fitting and zero overlap collisions."
+    },
+    {
+      "sample_id": "SAMPLE_03_HIGH_EMOTION",
+      "category": "high_emotion_scene",
+      "start_sec": 0.32,
+      "end_sec": 16.6,
+      "duration_sec": 16.28,
+      "scene_id": "SCENE_001",
+      "mean_emotional_intensity": 0.65,
+      "rationale": "Peak emotional intensity window testing prosody preservation and non-flat delivery."
+    },
+    {
+      "sample_id": "SAMPLE_04_MULTI_CHARACTER",
+      "category": "multi_character_overlap_scene",
+      "start_sec": 35.03,
+      "end_sec": 73.22,
+      "duration_sec": 38.19,
+      "scene_id": "SCENE_003",
+      "characters_present": [
+        "CHAR_001",
+        "CHAR_002",
+        "CHAR_003",
+        "CHAR_007",
+        "CHAR_009"
+      ],
+      "overlap_events_in_project": 0,
+      "rationale": "Multi-character rapid speaker handoff testing distinct locked voices and interruption handling."
+    },
+    {
+      "sample_id": "SAMPLE_05_FINALE",
+      "category": "final_2_minutes",
+      "start_sec": 8878.4,
+      "end_sec": 8998.4,
+      "duration_sec": 120.0,
+      "scene_id": "SCENE_321",
+      "rationale": "Closing window verifying zero cumulative timing drift and clean end-of-stream cadence."
+    }
+  ]
+}

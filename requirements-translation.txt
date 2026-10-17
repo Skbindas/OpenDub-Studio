@@ -1,0 +1,2 @@
+# Optional offline translation. Install language pairs separately through Argos Translate.
+argostranslate>=1.9,<2.0

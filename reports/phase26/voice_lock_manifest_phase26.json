@@ -1,0 +1,81 @@
+{
+  "locked_character_count": 3,
+  "scene_voice_collision_count": 0,
+  "scene_voice_collisions": [],
+  "voice_locks": [
+    {
+      "character_id": "CHAR_001",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "-2%",
+      "base_pitch": "-3Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 26,
+      "pool_slot": "secondary_feminine_alto",
+      "configuration_hash": "5cd3586d6245f0f6e11e9af11dc587664058ac41f29765f8a433b4f96e7d56ee"
+    },
+    {
+      "character_id": "CHAR_002",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "+0%",
+      "base_pitch": "+0Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 26,
+      "pool_slot": "primary_feminine_soprano",
+      "configuration_hash": "e3f98fabed3be03fc7089e72d8ea20069ee95f6201b53906a3a55739c2a7437a"
+    },
+    {
+      "character_id": "CHAR_003",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-MadhurNeural",
+      "base_rate": "+0%",
+      "base_pitch": "+0Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 26,
+      "pool_slot": "primary_masculine_baritone",
+      "configuration_hash": "2f2bf3c47e41d30cb6ece3c5860c5d60f1269693ff12ee3d2dfcf140a7f6ba46"
+    }
+  ],
+  "voice_lock_map": {
+    "CHAR_002": {
+      "character_id": "CHAR_002",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "+0%",
+      "base_pitch": "+0Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 26,
+      "pool_slot": "primary_feminine_soprano",
+      "configuration_hash": "e3f98fabed3be03fc7089e72d8ea20069ee95f6201b53906a3a55739c2a7437a"
+    },
+    "CHAR_001": {
+      "character_id": "CHAR_001",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "-2%",
+      "base_pitch": "-3Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 26,
+      "pool_slot": "secondary_feminine_alto",
+      "configuration_hash": "5cd3586d6245f0f6e11e9af11dc587664058ac41f29765f8a433b4f96e7d56ee"
+    },
+    "CHAR_003": {
+      "character_id": "CHAR_003",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-MadhurNeural",
+      "base_rate": "+0%",
+      "base_pitch": "+0Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 26,
+      "pool_slot": "primary_masculine_baritone",
+      "configuration_hash": "2f2bf3c47e41d30cb6ece3c5860c5d60f1269693ff12ee3d2dfcf140a7f6ba46"
+    }
+  }
+}

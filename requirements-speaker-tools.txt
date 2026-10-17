@@ -1,0 +1,4 @@
+# Optional isolated target only; preserve main and clone environments.
+speechbrain==1.1.1
+HyperPyYAML==1.2.3
+ruamel.yaml==0.18.17

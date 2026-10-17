@@ -1,0 +1,11 @@
+# Paste this prompt into AntiGravity
+
+Continue OpenDub Studio from the existing working folder. Read the active global engineering rules and .agents/rules/opendub-evidence.md, then docs/ANTIGRAVITY_HANDOFF_AND_VERIFICATION_PLAN.md, docs/VOICE_BANK_AUDIT_STATUS.md and the private runtime/voice-bank-audit/delivery-report.json. Verify current Git and runtime state before relying on the handoff.
+
+First report which rules are loaded, the current voice-bank counts, what is actually verified, and the next unresolved acceptance gate. Do not regenerate all voices, delete old files, fabricate review flags or claim completion from metadata. Preserve the three accepted auditions and the completed test project. Identify correct source speakers, select suitable clean reference candidates, correct uncertain reference words, and regenerate only affected unaccepted voices when evidence requires it. Human listening/source identity judgments must be requested when they cannot be verified with available tools.
+
+Follow the staged plan through real voice reuse, retained-checkpoint recovery, expressive dialogue and a small genuine-clone end-to-end render before expanding to long movies. Use the authorized embedded browser; do not silently launch an external browser. Keep the main terminal open and collect app logs. Maintain a per-voice evidence ledger and concise progress updates. Ask before irreversible actions or unapproved expansion; continue authorized reversible work without repeated permission requests.
+
+Report exactly what you observed, changed and tested, with evidence paths. Keep planned/implemented/tested/human-approved states distinct. A successful candidate audition does not establish verified defaults or a completed feature-length render. Activate the replacement bank only when its complete review gate passes; retain previous defaults for rollback. Push intended code after validation within the user's authorization and monitor every applicable workflow for the exact pushed commit.
+
+Start with handoff verification and the remaining voice review gates, not a new broad UI rewrite. Conserve usage by reusing valid artifacts, checking focused changes and avoiding duplicate model downloads or repeated full test runs.

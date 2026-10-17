@@ -1,0 +1,11 @@
+{
+  "phase": 31,
+  "total_chunks": 34,
+  "interrupted_after_chunk_count": 17,
+  "stale_tmp_files_cleaned": 1,
+  "chunks_skipped_via_verified_checkpoint": 17,
+  "chunks_executed_after_resume": 17,
+  "duplicate_recomputed_chunks": 0,
+  "all_chunks_completed": true,
+  "status": "PASS"
+}

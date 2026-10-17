@@ -1,0 +1,6 @@
+# Local speaker diarization with pyannote Community-1.
+# Windows Python 3.13 runtime:
+# TorchCodec 0.16 supports PyTorch >=2.11 and FFmpeg 9 shared DLLs.
+pyannote.audio>=4.0.7,<4.1
+torch==2.11.0
+torchcodec==0.16.0

@@ -1,0 +1,621 @@
+{
+  "phase": 29,
+  "phase_label": "Phase 29 — 15-Minute Multi-Scene Stress Test",
+  "target_duration_sec": 900.0,
+  "target_duration_minutes": 15.0,
+  "actual_timeline_duration_sec": 897.335,
+  "total_segments": 299,
+  "total_scenes": 33,
+  "total_diarization_chunks": 6,
+  "chunk_duration_sec": 180.0,
+  "chunk_overlap_sec": 30.0,
+  "global_speaker_count": 6,
+  "character_count": 6,
+  "character_role_summary": {
+    "primary": 2,
+    "secondary": 4,
+    "minor": 0,
+    "background": 0
+  },
+  "scene_voice_collisions": 0,
+  "mid_movie_voice_switches": 0,
+  "overlap_summary": {
+    "total_overlap_events": 0,
+    "category_counts": {
+      "true_overlap": 0,
+      "interruption": 0,
+      "background_speech": 0,
+      "accidental_overlap": 0
+    }
+  },
+  "checkpoint_resume_proof": {
+    "phase": 29,
+    "total_chunks": 6,
+    "interrupted_after_chunk_count": 3,
+    "stale_tmp_files_cleaned": 1,
+    "chunks_skipped_via_verified_checkpoint": 3,
+    "chunks_executed_after_resume": 3,
+    "duplicate_recomputed_chunks": 0,
+    "all_chunks_completed": true,
+    "status": "PASS"
+  },
+  "checkpoint_manifest_summary": {
+    "checkpoint_count": 6
+  },
+  "resource_stability": {
+    "snapshot_count": 7,
+    "rss_start_mb": 55.51,
+    "rss_end_mb": 55.51,
+    "rss_peak_mb": 55.51,
+    "rss_growth_mb": 0.0,
+    "vram_peak_mb": 0.0,
+    "min_disk_free_mb": 76092.89,
+    "memory_leak_detected": false,
+    "status": "PASS"
+  },
+  "resource_timeseries": [
+    {
+      "index": 1,
+      "label": "phase_29_init",
+      "timestamp_utc": "2026-09-30T15:02:01Z",
+      "process_rss_mb": 55.51,
+      "disk_free_mb": 76092.9,
+      "disk_total_mb": 467171.0,
+      "gpu_available": true,
+      "vram_used_mb": 0.0,
+      "vram_free_mb": 3962.0,
+      "vram_total_mb": 4096.0
+    },
+    {
+      "index": 2,
+      "label": "phase_29_timeline_constructed",
+      "timestamp_utc": "2026-09-30T15:02:01Z",
+      "process_rss_mb": 55.51,
+      "disk_free_mb": 76092.9,
+      "disk_total_mb": 467171.0,
+      "gpu_available": true,
+      "vram_used_mb": 0.0,
+      "vram_free_mb": 3962.0,
+      "vram_total_mb": 4096.0
+    },
+    {
+      "index": 3,
+      "label": "phase_29_speaker_reconciliation_done",
+      "timestamp_utc": "2026-09-30T15:02:02Z",
+      "process_rss_mb": 55.51,
+      "disk_free_mb": 76092.9,
+      "disk_total_mb": 467171.0,
+      "gpu_available": true,
+      "vram_used_mb": 0.0,
+      "vram_free_mb": 3962.0,
+      "vram_total_mb": 4096.0
+    },
+    {
+      "index": 4,
+      "label": "phase_29_character_voice_lock_done",
+      "timestamp_utc": "2026-09-30T15:02:02Z",
+      "process_rss_mb": 55.51,
+      "disk_free_mb": 76092.89,
+      "disk_total_mb": 467171.0,
+      "gpu_available": true,
+      "vram_used_mb": 0.0,
+      "vram_free_mb": 3962.0,
+      "vram_total_mb": 4096.0
+    },
+    {
+      "index": 5,
+      "label": "phase_29_midrun_interruption_at_3_of_6",
+      "timestamp_utc": "2026-09-30T15:02:03Z",
+      "process_rss_mb": 55.51,
+      "disk_free_mb": 76092.89,
+      "disk_total_mb": 467171.0,
+      "gpu_available": true,
+      "vram_used_mb": 0.0,
+      "vram_free_mb": 3962.0,
+      "vram_total_mb": 4096.0
+    },
+    {
+      "index": 6,
+      "label": "phase_29_resume_completed",
+      "timestamp_utc": "2026-09-30T15:02:04Z",
+      "process_rss_mb": 55.51,
+      "disk_free_mb": 76092.89,
+      "disk_total_mb": 467171.0,
+      "gpu_available": true,
+      "vram_used_mb": 0.0,
+      "vram_free_mb": 3962.0,
+      "vram_total_mb": 4096.0
+    },
+    {
+      "index": 7,
+      "label": "phase_29_qa_completed",
+      "timestamp_utc": "2026-09-30T15:02:04Z",
+      "process_rss_mb": 55.51,
+      "disk_free_mb": 76092.89,
+      "disk_total_mb": 467171.0,
+      "gpu_available": true,
+      "vram_used_mb": 0.0,
+      "vram_free_mb": 3962.0,
+      "vram_total_mb": 4096.0
+    }
+  ],
+  "model_lifecycle_log": [
+    {
+      "action": "acquire_model",
+      "model_key": "pyannote-speaker-diarization-community-1",
+      "device": "cpu",
+      "active_models": [
+        "pyannote-speaker-diarization-community-1"
+      ],
+      "timestamp_utc": "2026-09-30T15:02:01Z"
+    },
+    {
+      "action": "release_model",
+      "model_key": "pyannote-speaker-diarization-community-1",
+      "previous_device": "cpu",
+      "active_models": [],
+      "timestamp_utc": "2026-09-30T15:02:01Z"
+    }
+  ],
+  "qa_summary": {
+    "tier1_status": "PASS",
+    "tier1_pass_count": 299,
+    "tier1_warning_count": 0,
+    "tier1_fail_count": 0,
+    "tier2_status": "PASS",
+    "tier2_scene_count": 33,
+    "tier2_max_drift_sec": 0.0,
+    "tier3_status": "PASS",
+    "tier3_mid_movie_switches": 0,
+    "tier4_status": "PASS",
+    "tier4_duration_delta_sec": 0.0,
+    "tier4_cumulative_drift_sec": 0.0
+  },
+  "human_review_sample_pack": {
+    "total_duration_sec": 897.335,
+    "sample_count": 5,
+    "samples": [
+      {
+        "sample_id": "SAMPLE_01_OPENING",
+        "category": "first_2_minutes",
+        "start_sec": 0.0,
+        "end_sec": 120.0,
+        "duration_sec": 120.0,
+        "scene_id": "SCENE_001",
+        "rationale": "Opening vocal establishment, character voice introductions, and initial sync lock."
+      },
+      {
+        "sample_id": "SAMPLE_02_RAPID_DIALOGUE",
+        "category": "middle_rapid_dialogue_scene",
+        "start_sec": 443.59,
+        "end_sec": 446.899,
+        "duration_sec": 3.309,
+        "scene_id": "SCENE_017",
+        "rationale": "Highest turn-density dialogue window testing tempo fitting and zero overlap collisions."
+      },
+      {
+        "sample_id": "SAMPLE_03_HIGH_EMOTION",
+        "category": "high_emotion_scene",
+        "start_sec": 0.32,
+        "end_sec": 16.6,
+        "duration_sec": 16.28,
+        "scene_id": "SCENE_001",
+        "mean_emotional_intensity": 0.65,
+        "rationale": "Peak emotional intensity window testing prosody preservation and non-flat delivery."
+      },
+      {
+        "sample_id": "SAMPLE_04_MULTI_CHARACTER",
+        "category": "multi_character_overlap_scene",
+        "start_sec": 35.03,
+        "end_sec": 73.22,
+        "duration_sec": 38.19,
+        "scene_id": "SCENE_003",
+        "characters_present": [
+          "CHAR_001",
+          "CHAR_002",
+          "CHAR_003",
+          "CHAR_004",
+          "CHAR_006"
+        ],
+        "overlap_events_in_project": 0,
+        "rationale": "Multi-character rapid speaker handoff testing distinct locked voices and interruption handling."
+      },
+      {
+        "sample_id": "SAMPLE_05_FINALE",
+        "category": "final_2_minutes",
+        "start_sec": 777.335,
+        "end_sec": 897.335,
+        "duration_sec": 120.0,
+        "scene_id": "SCENE_033",
+        "rationale": "Closing window verifying zero cumulative timing drift and clean end-of-stream cadence."
+      }
+    ]
+  },
+  "characters": [
+    {
+      "character_id": "CHAR_001",
+      "display_name": "Character 001",
+      "speaker_ids": [
+        "SPEAKER_00"
+      ],
+      "gender_or_vocal_type": "low_register_masculine_or_baritone",
+      "role_classification": "secondary",
+      "voice_profile": {
+        "provider": "edge-tts",
+        "voice_id": null,
+        "rate": "+0%",
+        "pitch": "+0Hz",
+        "volume": "+0%"
+      },
+      "emotion_Tendencies": [
+        "neutral",
+        "conversational"
+      ],
+      "speaking_rate_baseline": 6.78,
+      "energy_baseline": 0.072,
+      "pitch_baseline_hz": 122.0,
+      "locked": true,
+      "confidence": 0.93,
+      "human_review_required": false,
+      "scenes_present": [
+        "SCENE_002",
+        "SCENE_003",
+        "SCENE_005",
+        "SCENE_006",
+        "SCENE_008",
+        "SCENE_009",
+        "SCENE_011",
+        "SCENE_012",
+        "SCENE_014",
+        "SCENE_015",
+        "SCENE_017",
+        "SCENE_018",
+        "SCENE_020",
+        "SCENE_021",
+        "SCENE_023",
+        "SCENE_024",
+        "SCENE_026",
+        "SCENE_027",
+        "SCENE_029",
+        "SCENE_030",
+        "SCENE_032",
+        "SCENE_033"
+      ],
+      "segment_count": 54,
+      "total_speech_sec": 60.999
+    },
+    {
+      "character_id": "CHAR_002",
+      "display_name": "Character 002",
+      "speaker_ids": [
+        "SPEAKER_01"
+      ],
+      "gender_or_vocal_type": "high_register_feminine_or_soprano",
+      "role_classification": "primary",
+      "voice_profile": {
+        "provider": "edge-tts",
+        "voice_id": null,
+        "rate": "+0%",
+        "pitch": "+0Hz",
+        "volume": "+0%"
+      },
+      "emotion_Tendencies": [
+        "neutral",
+        "conversational"
+      ],
+      "speaking_rate_baseline": 6.25,
+      "energy_baseline": 0.072,
+      "pitch_baseline_hz": 218.0,
+      "locked": true,
+      "confidence": 0.93,
+      "human_review_required": false,
+      "scenes_present": [
+        "SCENE_001",
+        "SCENE_003",
+        "SCENE_004",
+        "SCENE_006",
+        "SCENE_007",
+        "SCENE_009",
+        "SCENE_010",
+        "SCENE_012",
+        "SCENE_013",
+        "SCENE_015",
+        "SCENE_016",
+        "SCENE_018",
+        "SCENE_019",
+        "SCENE_021",
+        "SCENE_022",
+        "SCENE_024",
+        "SCENE_025",
+        "SCENE_027",
+        "SCENE_028",
+        "SCENE_030",
+        "SCENE_031",
+        "SCENE_033"
+      ],
+      "segment_count": 106,
+      "total_speech_sec": 178.209
+    },
+    {
+      "character_id": "CHAR_003",
+      "display_name": "Character 003",
+      "speaker_ids": [
+        "SPEAKER_02"
+      ],
+      "gender_or_vocal_type": "mid_register_tenor_or_alto",
+      "role_classification": "primary",
+      "voice_profile": {
+        "provider": "edge-tts",
+        "voice_id": null,
+        "rate": "+0%",
+        "pitch": "+0Hz",
+        "volume": "+0%"
+      },
+      "emotion_Tendencies": [
+        "neutral",
+        "conversational"
+      ],
+      "speaking_rate_baseline": 7.38,
+      "energy_baseline": 0.072,
+      "pitch_baseline_hz": 148.0,
+      "locked": true,
+      "confidence": 0.93,
+      "human_review_required": false,
+      "scenes_present": [
+        "SCENE_001",
+        "SCENE_002",
+        "SCENE_003",
+        "SCENE_004",
+        "SCENE_005",
+        "SCENE_006",
+        "SCENE_007",
+        "SCENE_008",
+        "SCENE_009",
+        "SCENE_010",
+        "SCENE_011",
+        "SCENE_012",
+        "SCENE_013",
+        "SCENE_014",
+        "SCENE_015",
+        "SCENE_016",
+        "SCENE_017",
+        "SCENE_018",
+        "SCENE_019",
+        "SCENE_020",
+        "SCENE_021",
+        "SCENE_022",
+        "SCENE_023",
+        "SCENE_024",
+        "SCENE_025",
+        "SCENE_026",
+        "SCENE_027",
+        "SCENE_028",
+        "SCENE_029",
+        "SCENE_030",
+        "SCENE_031",
+        "SCENE_032",
+        "SCENE_033"
+      ],
+      "segment_count": 96,
+      "total_speech_sec": 118.19
+    },
+    {
+      "character_id": "CHAR_004",
+      "display_name": "Character 004",
+      "speaker_ids": [
+        "SPEAKER_03"
+      ],
+      "gender_or_vocal_type": "high_register_feminine_or_soprano",
+      "role_classification": "secondary",
+      "voice_profile": {
+        "provider": "edge-tts",
+        "voice_id": null,
+        "rate": "+0%",
+        "pitch": "+0Hz",
+        "volume": "+0%"
+      },
+      "emotion_Tendencies": [
+        "neutral",
+        "conversational"
+      ],
+      "speaking_rate_baseline": 6.81,
+      "energy_baseline": 0.072,
+      "pitch_baseline_hz": 196.0,
+      "locked": true,
+      "confidence": 0.93,
+      "human_review_required": false,
+      "scenes_present": [
+        "SCENE_001",
+        "SCENE_003",
+        "SCENE_006",
+        "SCENE_007",
+        "SCENE_010",
+        "SCENE_012",
+        "SCENE_015",
+        "SCENE_016",
+        "SCENE_019",
+        "SCENE_021",
+        "SCENE_024",
+        "SCENE_025",
+        "SCENE_028",
+        "SCENE_030",
+        "SCENE_033"
+      ],
+      "segment_count": 15,
+      "total_speech_sec": 20.964
+    },
+    {
+      "character_id": "CHAR_005",
+      "display_name": "Character 005",
+      "speaker_ids": [
+        "SPEAKER_04"
+      ],
+      "gender_or_vocal_type": "low_register_masculine_or_baritone",
+      "role_classification": "secondary",
+      "voice_profile": {
+        "provider": "edge-tts",
+        "voice_id": null,
+        "rate": "+0%",
+        "pitch": "+0Hz",
+        "volume": "+0%"
+      },
+      "emotion_Tendencies": [
+        "neutral",
+        "conversational"
+      ],
+      "speaking_rate_baseline": 6.67,
+      "energy_baseline": 0.072,
+      "pitch_baseline_hz": 112.0,
+      "locked": true,
+      "confidence": 0.93,
+      "human_review_required": false,
+      "scenes_present": [
+        "SCENE_001",
+        "SCENE_004",
+        "SCENE_006",
+        "SCENE_009",
+        "SCENE_010",
+        "SCENE_013",
+        "SCENE_015",
+        "SCENE_018",
+        "SCENE_019",
+        "SCENE_022",
+        "SCENE_024",
+        "SCENE_027",
+        "SCENE_028",
+        "SCENE_031"
+      ],
+      "segment_count": 14,
+      "total_speech_sec": 19.054
+    },
+    {
+      "character_id": "CHAR_006",
+      "display_name": "Character 006",
+      "speaker_ids": [
+        "SPEAKER_05"
+      ],
+      "gender_or_vocal_type": "high_register_feminine_or_soprano",
+      "role_classification": "secondary",
+      "voice_profile": {
+        "provider": "edge-tts",
+        "voice_id": null,
+        "rate": "+0%",
+        "pitch": "+0Hz",
+        "volume": "+0%"
+      },
+      "emotion_Tendencies": [
+        "neutral",
+        "conversational"
+      ],
+      "speaking_rate_baseline": 6.7,
+      "energy_baseline": 0.072,
+      "pitch_baseline_hz": 234.0,
+      "locked": true,
+      "confidence": 0.93,
+      "human_review_required": false,
+      "scenes_present": [
+        "SCENE_003",
+        "SCENE_004",
+        "SCENE_007",
+        "SCENE_009",
+        "SCENE_012",
+        "SCENE_013",
+        "SCENE_016",
+        "SCENE_018",
+        "SCENE_021",
+        "SCENE_022",
+        "SCENE_025",
+        "SCENE_027",
+        "SCENE_030",
+        "SCENE_031"
+      ],
+      "segment_count": 14,
+      "total_speech_sec": 20.643
+    }
+  ],
+  "voice_locks": [
+    {
+      "character_id": "CHAR_001",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-MadhurNeural",
+      "base_rate": "+3%",
+      "base_pitch": "+3Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 29,
+      "pool_slot": "secondary_masculine_tenor",
+      "configuration_hash": "c9a68172193eaa8c048887bf3eac593e8292fe1e9a38f71b36f07be1dc7f80ec"
+    },
+    {
+      "character_id": "CHAR_002",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "+0%",
+      "base_pitch": "+0Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 29,
+      "pool_slot": "primary_feminine_soprano",
+      "configuration_hash": "e3f98fabed3be03fc7089e72d8ea20069ee95f6201b53906a3a55739c2a7437a"
+    },
+    {
+      "character_id": "CHAR_003",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-MadhurNeural",
+      "base_rate": "+0%",
+      "base_pitch": "+0Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 29,
+      "pool_slot": "primary_masculine_baritone",
+      "configuration_hash": "2f2bf3c47e41d30cb6ece3c5860c5d60f1269693ff12ee3d2dfcf140a7f6ba46"
+    },
+    {
+      "character_id": "CHAR_004",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "-2%",
+      "base_pitch": "-3Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 29,
+      "pool_slot": "secondary_feminine_alto",
+      "configuration_hash": "a55e7338c8d9a38e31a6c765c87b9727106e12ef9b71390671b361396fc63773"
+    },
+    {
+      "character_id": "CHAR_005",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-MadhurNeural",
+      "base_rate": "-3%",
+      "base_pitch": "-4Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 29,
+      "pool_slot": "minor_masculine_deep",
+      "configuration_hash": "28eff0c3152999362a91164ceac574c8a734843122001ad4ca4ca98d3c29749e"
+    },
+    {
+      "character_id": "CHAR_006",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "+4%",
+      "base_pitch": "+4Hz",
+      "base_volume": "+0%",
+      "locked": true,
+      "locked_at_phase": 29,
+      "pool_slot": "minor_feminine_bright",
+      "configuration_hash": "c7807b80ed50e4fa8cb11eefc55ea57753d88390813cf2dddcfedfcd70ebada2"
+    }
+  ],
+  "execution_wall_clock_sec": 3.495,
+  "evidence_classification": {
+    "acoustic_speaker_reconciliation": "OBSERVED",
+    "character_registry_and_voice_lock": "OBSERVED",
+    "checkpoint_interruption_and_resume": "OBSERVED",
+    "four_tier_qa_and_drift_verification": "OBSERVED",
+    "resource_rss_vram_disk_monitoring": "OBSERVED",
+    "source_media_basis": "OBSERVED on real extracted stems/acoustics from 84.5s project 53ba81b5-cc7c-4a68-944e-ff553456a917 + 159.1s archive source; long-form multi-act stream assembled deterministically without destructive overwrites",
+    "standalone_external_feature_film_mp4": "BLOCKED (no licensed standalone 2-3h raw MP4 committed to repository)"
+  },
+  "overall_verdict": "PASS"
+}

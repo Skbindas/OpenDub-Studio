@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "project_id": "53ba81b5-cc7c-4a68-944e-ff553456a917",
+  "generated_at": "2026-09-30T13:14:17.045729+00:00",
+  "timing_verdict": "PASS (28/28 reconciled, 0 speech truncation, 0 collisions)",
+  "visual_lipsync_verdict": "PASS (15 PASS, 10 NOT_VERIFIABLE, 3 WARNING, 0 FAIL)",
+  "overall_verdict": "PASS (Production Master Released)",
+  "overall_recommendation": "READY",
+  "source": {
+    "path": "runtime/projects/53ba81b5-cc7c-4a68-944e-ff553456a917/source/original.mp4",
+    "video_stream_duration_sec": 84.433312,
+    "container_duration_sec": 84.497415,
+    "video_codec": "h264",
+    "frame_count": 2533,
+    "fps": 30.0,
+    "resolution": "1280x720",
+    "integrity": "PASS"
+  },
+  "audio": {
+    "mix_path": "runtime/projects/53ba81b5-cc7c-4a68-944e-ff553456a917/output/mix_phase23.wav",
+    "integrated_lufs": -16.4,
+    "target_lufs": -16.0,
+    "true_peak_ceiling": -1.4,
+    "clipping_sample_count": 0,
+    "final_speech_endpoint_sec": 83.71,
+    "total_program_duration_sec": 84.497,
+    "dialogue_collisions": 0,
+    "speech_truncation_count": 0
+  },
+  "timeline": {
+    "total_segments": 28,
+    "segments_reconciled": 28,
+    "reconciliation_rate": "100.0%",
+    "truncated_segments": 0,
+    "max_tempo_factor": 1.28,
+    "min_tempo_factor": 0.865,
+    "dialogue_overlap_count": 0
+  },
+  "lip_sync": {
+    "total_segments": 28,
+    "pass_count": 15,
+    "not_verifiable_count": 10,
+    "warning_count": 3,
+    "fail_count": 0,
+    "classification_breakdown": {
+      "PASS": [
+        4,
+        5,
+        8,
+        11,
+        12,
+        13,
+        14,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "NOT_VERIFIABLE": [
+        0,
+        1,
+        2,
+        3,
+        9,
+        10,
+        15,
+        16,
+        22,
+        27
+      ],
+      "WARNING": [
+        6,
+        7,
+        17
+      ],
+      "FAIL": []
+    },
+    "overall_status": "PASS"
+  },
+  "final_render": {
+    "render_path": "runtime/projects/53ba81b5-cc7c-4a68-944e-ff553456a917/output/dubbed_hindi_41374123128_phase23_corrected.mp4",
+    "file_size_bytes": 9341035,
+    "video_stream_duration_sec": 84.433312,
+    "container_duration_sec": 84.433313,
+    "audio_stream_duration_sec": 84.416,
+    "video_codec": "h264",
+    "video_frames": 2533,
+    "audio_codec": "aac",
+    "audio_sample_rate": 48000,
+    "audio_channels": 2,
+    "video_frame_integrity_psnr": "inf (Bit-exact lossless stream copy from source)",
+    "decode_errors": 0,
+    "mean_volume_db": -19.5,
+    "max_volume_db": -1.4
+  }
+}

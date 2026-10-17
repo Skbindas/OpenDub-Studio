@@ -1,0 +1,20 @@
+{
+  "status": "awaiting_authorized_recording",
+  "source_language": null,
+  "target_language": "hi",
+  "source_sha256": null,
+  "dubbed_sha256": null,
+  "duration_seconds": null,
+  "model_revisions": {},
+  "technical_checks_passed": false,
+  "human_listening_accepted": false,
+  "source_publication_permission_verified": false,
+  "voice_conditioning_permission_verified": false,
+  "generated_speech_publication_permission_verified": false,
+  "voice_reference_redistribution_permission_verified": false,
+  "reviewed_at": null,
+  "original_public_url": null,
+  "dubbed_public_url": null,
+  "original_captions_url": null,
+  "dubbed_captions_url": null
+}

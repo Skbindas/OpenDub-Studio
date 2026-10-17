@@ -1,0 +1,4 @@
+# Optional: install only for Kaggle offloading, Python 3.11+.
+kaggle==2.2.4
+keyring==25.7.0
+huggingface-hub>=0.36,<2

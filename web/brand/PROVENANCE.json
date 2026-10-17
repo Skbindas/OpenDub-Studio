@@ -1,0 +1,19 @@
+{
+  "mode": "built-in image_gen",
+  "exact_model_version": "Not exposed by tool",
+  "reference_workflow": "Read-only review of elnavix-web brand-candidates and BRAND_ASSET_REVIEW.md; no existing brand pixels imported",
+  "generated": [
+    {
+      "file": "symbol-ai-v1.png",
+      "prompt": "Use case: logo-brand. Create one original professional app symbol for OpenDub Studio, an open-source video dubbing workspace. Isolated symbol only, no words, no letters, no mockup, no device, no watermark. Two interlocking rounded speech-bubble forms suggest original and translated dialogue; integrate three bold audio-waveform bars in the negative space. Strong simple silhouette readable at 32px. Blue #2455C8 primary and teal #19B596 accent, white negative space. Flat vector-friendly geometric design with restrained subtle dimensional polish, crisp balanced edges, no extraneous small details, no purple gradients. Centered with generous clear space, entire symbol visible. Genuinely transparent background. This is a new brand artwork candidate; do not imitate any existing company logo.",
+      "alpha": "Native transparency retained"
+    },
+    {
+      "file": "cover-ai-v1.png",
+      "prompt": "Use case: illustration-story / brand supporting artwork. Create an original wide 2:1 horizontal editorial product illustration for OpenDub Studio, a video dubbing application. Bright pure white background. On the right two thirds: a tactile polished blue speech bubble and a mint-teal speech bubble connected by a short elegant audio waveform, with two restrained rounded video frames and parallel blue/teal audio timeline strips suggesting one original scene and its translated soundtrack. No people, no faces, no device mockup, no app screenshot, no interface text, no typography, no letters, no watermark. Restrained premium soft 3D depth, realistic gentle contact shadows, clear geometry, blue #2455C8 and teal #19B596 accents, charcoal small timeline ticks. Left third mostly clean white negative space for an editable title added later. Useful as a GitHub README cover illustration, not evidence of a real UI. Keep simple and calm rather than a busy technology collage.",
+      "use": "Supporting concept illustration; not a product screenshot"
+    }
+  ],
+  "vectors": "Original editable geometric adaptations of the generated symbol concept, not native vector model output or exact traces",
+  "publication": "Prepared in the private OpenDub source repository; no repository visibility change"
+}

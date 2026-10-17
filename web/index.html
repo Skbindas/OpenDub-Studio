@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>OpenDub Studio | Hindi dubbing workspace</title>
+  <meta name="description" content="A local workspace for translation, dialogue timing and background-preserving Hindi dubbing.">
+  <link rel="icon" href="/favicon.ico?v=brand-v2" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css?v=reference-intake-2">
+</head>
+<body>
+  <a class="skip-link" href="#projectPanel">Skip to workspace</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="OpenDub Studio home"><img class="brand-logo" src="/assets/brand/opendub-mark-v2.svg" alt="" width="36" height="36"><span><strong>OpenDub Studio</strong><small>Video dubbing · local or your cloud</small></span></a>
+    <div class="top-actions"><span class="local-label">Local workspace</span><button id="systemStatus" class="status-chip" type="button">Checking system</button><button id="refreshBtn" class="icon-btn" aria-label="Refresh workspace" title="Refresh workspace">↻</button></div>
+  </header>
+  <main class="workspace">
+    <aside class="sidebar panel" aria-label="Projects">
+      <div class="sidebar-head"><h2>Projects</h2><button id="newProjectBtn" class="primary small">+ New</button></div>
+      <div id="projectList" class="project-list"></div>
+      <div class="sidebar-foot"><strong>Your source stays intact.</strong><p>Original video and intermediate audio are retained for review. Provider requirements appear in diagnostics.</p><span class="language-chip" lang="hi">हिंदी डबिंग</span></div>
+    </aside>
+    <section class="main-column" aria-label="Dubbing workspace">
+      <div class="workspace-intro"><div><span class="eyebrow">DUBBING WORKSPACE</span><h1>A new voice. The same scene.</h1><p>Upload a video, choose a language, and review your new soundtrack.</p></div><div class="audio-stack" aria-label="Audio workflow"><span class="stack-source">Original scene</span><span class="stack-dialogue">Hindi dialogue</span><span class="stack-background">Music + effects</span></div></div>
+      <nav class="workspace-nav" aria-label="Studio workflow"><a href="#projectPanel">1 · Video & language</a><a href="#charactersSection">2 · Voices</a><a href="#previewSection">3 · Preview</a><a href="#autoDubSection">4 · Export</a><a href="#voiceLibrarySection">Voice library</a></nav>
+      <details id="setupPanel" class="panel setup-panel"><summary><img src="/assets/brand/icons/setup.svg" alt="" width="22" height="22"> Setup & readiness</summary>
+        <p id="setupSummary" role="status">Checking setup…</p><p class="hint">Local checklist. Kaggle account and private-upload choices stay in Processing location.</p>
+        <ol id="setupChecks" class="setup-checks"></ol><p id="setupNote" class="hint"></p>
+        <div class="button-row"><button id="refreshSetupBtn" class="ghost" type="button">Recheck setup</button><button id="setupDiagnosticsBtn" class="ghost" type="button">System check</button><a href="/api/setup/guide" target="_blank" rel="noopener">Read setup guide</a><a href="/assets/brand/review.html" target="_blank" rel="noopener">Brand assets</a></div>
+      </details>
+      <div id="emptyState" class="panel empty-state"><div class="empty-art" aria-hidden="true">＋</div><h2>Start with a source video</h2><p>Create a project, upload your clip, then review each step of the Hindi dub.</p><button id="emptyCreateBtn" class="primary">Create Project</button></div>
+        <section id="projectPanel" class="panel hidden">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">ACTIVE WORKSPACE</div>
+              <div class="project-title-row">
+                <h2 id="projectTitle">Untitled</h2>
+                <button id="renameProjectBtn" class="ghost small">Rename</button>
+              </div>
+            </div>
+            <button id="deleteProjectBtn" class="danger ghost">Delete Project</button>
+          </div>
+
+          <div class="project-grid">
+            <!-- Source Movie Upload -->
+            <div class="upload-card">
+              <div class="card-title">Source Movie</div>
+              <div id="sourceInfo" class="source-info">
+                <div class="upload-icon">↑</div>
+                <strong>No movie uploaded</strong>
+                <span>MP4, MKV, MOV, AVI, WebM</span>
+              </div>
+              <label class="file-picker">
+                <span id="moviePickerLabel">Choose Movie</span>
+                <input id="movieInput" type="file" accept=".mp4,.mkv,.mov,.avi,.webm,.m4v,video/*">
+              </label>
+              <div id="uploadProgress" class="upload-progress hidden" aria-live="polite" data-state="uploading">
+                <div class="upload-progress-head">
+                  <div>
+                    <strong id="uploadProgressTitle">Uploading movie…</strong>
+                    <span id="uploadProgressDetail">Preparing local transfer</span>
+                  </div>
+                  <strong id="uploadProgressPercent">0%</strong>
+                </div>
+                <div class="upload-progress-track">
+                  <div id="uploadProgressBar" class="upload-progress-bar"></div>
+                </div>
+                <div class="upload-progress-meta">
+                  <span id="uploadProgressBytes">0 B / 0 B</span>
+                  <span id="uploadProgressState"><span class="upload-spinner"></span>Uploading</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommended Pipeline Settings -->
+            <div class="settings-card">
+              <div class="card-title">Recommended Dubbing Pipeline</div>
+              <label>Source language
+                <select id="sourceLanguage">
+                  <option value="auto" selected>Auto Detect</option>
+                  <option value="en">English</option>
+                  <option value="ko">Korean</option>
+                  <option value="ja">Japanese</option>
+                  <option value="zh">Chinese</option>
+                  <option value="es">Spanish</option>
+                  <option value="fr">French</option>
+                  <option value="de">German</option>
+                  <option value="ru">Russian</option>
+                  <option value="hi">Hindi</option>
+                </select>
+              </label>
+              <label>Target language
+                <select id="targetLanguage">
+                  <option value="hi" selected>Hindi</option>
+                  <option value="en">English</option>
+                  <option value="ko">Korean</option>
+                  <option value="zh">Chinese</option>
+                  <option value="ja">Japanese</option>
+                  <option value="es">Spanish</option>
+                </select>
+              </label>
+              <details class="expert-settings"><summary>Advanced · models & manual steps</summary>
+              <p class="hint">Small is the recommended starting model. Keep these defaults unless diagnostics recommend a change. Voice review remains required.</p>
+              <label>ASR model
+                <select id="asrModel">
+                  <option value="tiny">Tiny · lowest resource</option>
+                  <option value="base">Base · balanced</option>
+                  <option value="small" selected>Small · recommended start</option>
+                  <option value="medium">Medium · heavier</option>
+                  <option value="large-v3">Large v3 · very heavy</option>
+                </select>
+              </label>
+              <label>Piper voice model path
+                <input id="voiceModelPath" placeholder="C:\\models\\hi_IN-voice-medium.onnx">
+              </label>
+
+              <!-- Dependency Chain -->
+              <div id="pipelineState" class="pipeline-state">
+                <div class="pipeline-state-head">
+                  <strong>Dependency Chain</strong>
+                  <span class="hint">Each stage unlocks only after its prerequisite is ready.</span>
+                </div>
+                <div id="pipelineStateStages" class="pipeline-state-stages"></div>
+                <div id="pipelineNext" class="pipeline-next">Waiting for project analysis…</div>
+              </div>
+
+              <!-- Pipeline Steps -->
+              <div class="pipeline-steps">
+                <div class="pipeline-step">
+                  <div class="pipeline-step-index">1</div>
+                  <div class="pipeline-step-copy">
+                    <strong>Analyze movie</strong>
+                    <span>Scenes, ASR transcript, speakers, audio profile and persistent timeline.</span>
+                  </div>
+                  <button id="analyzeBtn" class="primary">Run</button>
+                </div>
+                <div class="pipeline-step">
+                  <div class="pipeline-step-index">2</div>
+                  <div class="pipeline-step-copy">
+                    <strong>Review characters</strong>
+                    <span>Detected speakers are automatically registered; rename or remap them when needed.</span>
+                  </div>
+                  <button id="syncCharactersBtn" class="ghost">Resync</button>
+                </div>
+                <div class="pipeline-step">
+                  <div class="pipeline-step-index">3</div>
+                  <div class="pipeline-step-copy">
+                    <strong>Translate dialogue</strong>
+                    <span>Keep source timestamps and speaker/character identity while adapting text to the target language.</span>
+                  </div>
+                  <button id="translateBtn" class="ghost">Translate</button>
+                </div>
+                <div class="pipeline-step">
+                  <div class="pipeline-step-index">4</div>
+                  <div class="pipeline-step-copy">
+                    <strong>Synthesize target voices</strong>
+                    <span>Generate one clip per dialogue segment, preserving the original timeline.</span>
+                  </div>
+                  <button id="dubAllBtn" class="ghost">Synthesize</button>
+                </div>
+                <div class="pipeline-step">
+                  <div class="pipeline-step-index">5</div>
+                  <div class="pipeline-step-copy">
+                    <strong>Fit, mix &amp; render</strong>
+                    <span>Fit dialogue timing, retain background levels, review the mix, then render.</span>
+                  </div>
+                  <button id="mixBtn" class="ghost">Mix</button>
+                </div>
+              </div>
+
+              <!-- Advanced Pipeline Tools -->
+              <details class="advanced-pipeline-tools">
+                <summary>Audio tools, timing & export</summary>
+                <div class="pipeline-actions">
+                  <button id="extractAudioBtn" class="ghost wide">Extract Source Audio</button>
+                  <button id="detectScenesBtn" class="ghost wide">Detect Scene Cuts</button>
+                  <button id="transcribeBtn" class="ghost wide">Transcribe Dialogue</button>
+                  <button id="diarizeBtn" class="ghost wide">Identify Speakers</button>
+                  <button id="separateBtn" class="ghost wide">Separate Vocal / Background</button>
+                  <button id="fitAllBtn" class="ghost wide">Fit All Dubbed Segments</button>
+                  <label>Background Preservation Mode
+                    <select id="bgPreserveMode">
+                      <option value="ducking">Spectral subtraction (degraded preview)</option>
+                      <option value="separation" selected>UVR Vocal / Background Separation</option>
+                      <option value="user_stem">User-Supplied Instrumental Stem</option>
+                    </select>
+                  </label>
+                  <button id="preserveBgBtn" class="ghost wide">Preserve Background Audio</button>
+                  <audio id="bgPreview" controls class="wide hidden" title="Preserved Background Audio"></audio>
+                  <label>Background audio path (optional)
+                    <input id="backgroundPath" placeholder="Project-relative instrumental/background WAV">
+                  </label>
+                  <button id="mixDubBtn" class="ghost wide">Mix Dubbed Audio &amp; Background</button>
+                  <audio id="mixPreview" controls class="wide hidden" title="Dubbed Soundtrack Mix"></audio>
+                  <label class="check-row">
+                    <input id="cleanupAfterRender" type="checkbox">
+                    <span>Delete temporary audio/stems after successful final render (source movie is always kept)</span>
+                  </label>
+                  <button id="renderBtn" class="primary wide">Render Final Dubbed Movie</button>
+                  <div id="qaReportBadge" class="hidden qa-report-badge"></div>
+                  <a id="downloadRender" class="ghost wide hidden" href="#" download>Download Final Movie</a>
+                </div>
+              </details>
+
+              </details>
+              <div id="jobProgress" class="job-progress hidden">
+                <div class="progress-meta">
+                  <span id="jobMessage">Queued</span>
+                  <span id="jobPercent">0%</span>
+                </div>
+                <div class="progress-track">
+                  <div id="jobBar" class="progress-bar"></div>
+                </div>
+                <button id="cancelJobBtn" class="ghost hidden" type="button">Cancel job</button>
+              </div>
+            </div>
+          </div>
+
+</section>
+<section id="autoDubSection" class="panel" aria-labelledby="pipelineTitle">
+  <details id="computePanel">
+    <summary>Processing location · Local / Kaggle</summary>
+    <p class="hint">Local processing is available. Kaggle processing is experimental. A short-video cloud test passed technical checks; full-movie and GPU-withdrawal tests are not certified. GPU availability and quota depend on your account. Switching back to local stops this app's cloud monitoring; it does not cancel a notebook already queued/running on Kaggle.</p>
+    <label>Processing location<select id="computeProvider"><option value="local">My computer</option><option value="kaggle">My Kaggle account · experimental pipeline</option></select></label>
+    <div id="kaggleSettings">
+      <label>Kaggle username<input id="kaggleUsername" autocomplete="username" maxlength="64" placeholder="Your own account username"></label>
+      <label>Requested GPU<select id="kaggleAccelerator"><option value="NvidiaTeslaT4">T4 · allocation depends on Kaggle</option><option value="NvidiaL4">L4 · if your account is eligible</option></select></label>
+      <p class="hint">Private personal research usage only. Some accelerators require special access. Selecting a GPU does not prove it is available.</p>
+      <label class="check-row"><input id="kaggleUploadAllowed" type="checkbox"><span>Allow selected media, voice references, dialogue and worker code to upload privately to my Kaggle account. Final mux/decode tasks also upload the source video.</span></label>
+      <label class="check-row"><input id="kaggleModelUploadAllowed" type="checkbox"><span>Allow my authorized speaker/separator model files to upload as private Kaggle inputs. Hugging Face tokens stay on this computer.</span></label>
+      <details><summary>Secure API credentials</summary>
+        <p class="hint">Saved in your OS credential vault. No keys are returned to the browser or stored in browser storage. Run scripts/setup_kaggle.py with the app's Python first; it creates an isolated SDK environment. Enter credentials here yourself.</p>
+        <label>API token<input id="kaggleApiToken" type="password" autocomplete="off" spellcheck="false"></label>
+        <label>Legacy API key · use only if you did not enter a token<input id="kaggleLegacyKey" type="password" autocomplete="off" spellcheck="false"></label>
+        <button id="saveKaggleCredentials" class="ghost" type="button">Save securely</button>
+      </details>
+    </div>
+    <div class="button-row"><button id="saveComputeSettings" class="primary" type="button">Save processing choice</button><button id="refreshComputeStatus" class="ghost" type="button">Refresh account / jobs</button></div>
+    <p id="computeStatus" class="hint" role="status">Select a project.</p>
+    <div id="kaggleJobs" aria-live="polite"></div>
+    <details><summary>Independent crop diagnostics</summary>
+      <p class="hint">Auto-Dub creates its own resumable tasks with speaker/voice review gates. These optional crop jobs produce separate ASR/stem artifacts. Prepare stays local; Submit uploads privately. Reconcile checks an existing run without submitting a duplicate.</p>
+      <label>Operation<select id="kaggleOperation"><option value="transcription">Transcribe a source crop</option><option value="separation">Separate dialogue and background</option></select></label>
+      <div class="settings-grid"><label>Start seconds<input id="kaggleCropStart" type="number" value="0" min="0" step="0.01"></label><label>End seconds<input id="kaggleCropEnd" type="number" value="30" min="0.01" step="0.01"></label></div>
+      <button id="createKaggleJob" class="ghost" type="button">Create local job intent</button>
+    </details>
+  </details>
+  <div class="section-head"><div><h2 id="pipelineTitle">Dubbing pipeline</h2><p class="hint">Real processing, with checkpoints. Timing or separation issues stop the export for review.</p></div><button id="runAutoDubBtn" class="primary" disabled>Start Auto-Dub</button></div>
+  <label class="check-row"><input id="autoFullPipelineToggle" type="checkbox" checked><span>Analyse automatically after upload; pause to review and lock voices before dubbing</span></label>
+  <details class="expert-settings"><summary>Advanced · worker capacity & terminals</summary>
+  <label>Parallel chunk workers <input id="separationWorkers" type="number" min="1" max="256" step="1" placeholder="Auto" aria-describedby="separationWorkersHelp"></label>
+  <p id="separationWorkersHelp" class="muted">Leave blank for Auto. A custom count is limited to available RAM, CPU and supported GPU capacity.</p>
+  <label class="check-row"><input id="visibleHelpersToggle" type="checkbox" checked><span>Show helper terminals on Windows · one terminal per active worker; models stay loaded between chunks</span></label>
+  </details>
+  <div id="autoDubMonitorCard" data-status="idle" aria-live="polite">
+    <div class="progress-meta"><strong id="autoDubStageLabel">Select a project and upload a video to begin.</strong><span id="autoDubPercent">0%</span></div>
+    <div class="progress-track" role="progressbar" aria-label="Dubbing progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="autoDubProgressBar" class="progress-bar"></div></div>
+    <div class="progress-meta hint"><span id="autoDubElapsed">Elapsed: 00m 00s</span><span id="autoDubEta">Stage estimate available during processing</span></div>
+    <div id="autoDubWorkCount" class="hint" aria-live="polite"></div>
+    <div id="autoDubCapacity" class="hint">Hardware capacity is checked before processing</div>
+    <ol id="autoDubStageList" class="auto-dub-stage-list"><li class="auto-dub-stage-item is-pending" data-stage="1"><span class="stage-check-icon">1</span><div class="stage-check-body"><strong>Analyze source</strong><span>Audio and scene analysis</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="2"><span class="stage-check-icon">2</span><div class="stage-check-body"><strong>Transcribe</strong><span>Language and timestamps</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="3"><span class="stage-check-icon">3</span><div class="stage-check-body"><strong>Match speakers</strong><span>Review character identities</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="4"><span class="stage-check-icon">4</span><div class="stage-check-body"><strong>Translate</strong><span>Natural Hindi dialogue</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="5"><span class="stage-check-icon">5</span><div class="stage-check-body"><strong>Synthesize & fit</strong><span>Speech within timing limits</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="6"><span class="stage-check-icon">6</span><div class="stage-check-body"><strong>Mix & render</strong><span>Background preserved; QA checked</span></div><span class="stage-check-status">Pending</span></li></ol>
+    <a id="autoDubDownloadBtn" class="primary hidden" href="#" download>Download Hindi video</a>
+    <div id="autoDubVideoPreviewWrap" class="hidden"><h3>Final render</h3><p class="hint">Check dialogue, timing and background by listening before delivery.</p><video id="finalVideoPreview" controls preload="metadata"></video></div>
+  </div>
+</section>
+<section id="previewSection" class="panel" aria-labelledby="previewTitle"><div class="section-head"><div><h2 id="previewTitle">Listen & compare</h2><p class="hint">Preview the actual project files. Each track becomes available after its processing stage.</p></div><button id="refreshPreviewsBtn" class="ghost">Refresh audio</button></div>
+  <div class="preview-grid"><div class="source-preview"><h3>Original scene</h3><video id="sourcePreview" controls preload="metadata" aria-label="Original video preview"></video><p id="sourcePreviewStatus" class="hint">Upload a source video first.</p></div><div class="audio-previews"><div class="audio-preview-row"><label for="vocalsPlayer">Isolated vocals</label><audio id="vocalsPlayer" controls preload="none" class="hidden"></audio><span id="vocalsStatus" class="hint">Not generated yet</span></div><div class="audio-preview-row"><label for="backgroundPlayer">Music & effects</label><audio id="backgroundPlayer" controls preload="none" class="hidden"></audio><span id="backgroundStatus" class="hint">Not generated yet</span></div><div class="audio-preview-row"><label for="mixPlayer">Hindi soundtrack</label><audio id="mixPlayer" controls preload="none" class="hidden"></audio><span id="mixStatus" class="hint">Not generated yet</span></div></div></div><div class="spectrum-head"><h3>Playback spectrum</h3><span id="spectrumStatus" class="hint">Play a preview to measure its audio.</span></div><canvas id="measuredSpectrum" width="900" height="100" role="img" aria-label="Measured playback frequency spectrum. Audio previews are also available without the graph."></canvas><div class="spectrum-labels"><span>0 Hz</span><span>Frequency (linear)</span><span id="spectrumMax">24 kHz</span></div></section>
+<section class="panel">          <!-- Timeline & Character Registry Shell -->
+          <div class="timeline-shell" id="dialogueSection">
+            <div class="section-head compact">
+              <div>
+                <div class="eyebrow eyebrow-green">TIMELINE &amp; SCRIPT</div>
+                <h3>Analysis &amp; Dialogue Master</h3>
+              </div>
+              <span id="timelineBadge" class="status-chip neutral">Waiting for analysis</span>
+            </div>
+            <div id="transcriptView" class="transcript-view hidden"></div>
+
+            <div class="character-shell" id="charactersSection">
+              <div class="section-head compact">
+                <div>
+                  <div class="eyebrow eyebrow-violet">CHARACTER REGISTRY</div>
+                  <h3>Project Characters</h3>
+                </div>
+                <button id="syncCharactersRegistryBtn" class="ghost">Resync Speakers</button>
+              </div>
+              <p class="hint">Speakers are auto-registered after analysis. Rename, classify, or map speaker clusters to custom voices before synthesis.</p>
+              <div class="section-head compact"><label>New character name <input id="newCharacterName" maxlength="120" placeholder="Character name" /></label><button id="addCharacterBtn" class="ghost">Add character</button></div>
+              <div id="characterList" class="character-list"></div>
+            </div>
+
+            <p class="hint">Review every translated line and speaker assignment before final delivery.</p>
+          </div>
+        </section>
+    </section>
+  </main>
+  <section class="panel voice-library-panel" id="voiceLibrarySection" aria-labelledby="voiceLibraryTitle">
+    <div class="section-head"><div><h2 id="voiceLibraryTitle">Reusable voice library</h2>
+      <p class="hint">Names are library aliases, not verified actor identities. Listen before choosing. Silent or mixed references cannot be recommended.</p></div>
+      <button id="loadVoiceLibraryBtn" class="ghost">Load library</button></div>
+
+    <details class="own-voice-panel"><summary><img src="/assets/brand/icons/voices.svg" alt="" width="22" height="22"> Add your own recording</summary>
+      <p class="hint">Use 3–10 seconds of complete, single-speaker speech in WAV format, up to 8 MB. These are reference limits; source-video uploads are separate. Listen before confirming. No background music.</p>
+      <form id="ownVoiceForm">
+        <div class="settings-grid"><label>Voice name<input name="name" maxlength="60" required placeholder="Your voice name"></label><label>WAV recording<input id="ownVoiceFile" name="file" type="file" accept=".wav,audio/wav" required></label></div>
+        <audio id="ownVoicePreview" controls preload="metadata" hidden aria-label="Your original reference recording"></audio>
+        <label>Exact words in this recording<textarea name="transcript" maxlength="4000" required placeholder="Write every spoken word exactly, in the recording's language."></textarea></label>
+        <label class="check-row"><input name="permission" type="checkbox" required><span>This is my recording or I have permission to use this voice for dubbing.</span></label>
+        <label class="check-row"><input name="single_speaker" type="checkbox" required><span>I listened: one person speaks, with clear complete words.</span></label>
+        <label class="check-row"><input name="clean_background" type="checkbox" required><span>I listened: no audible music, effects or other voices.</span></label>
+        <p class="hint">Saved privately. Import is not public-sharing permission or clone approval. The current OmniVoice weights have non-commercial terms; <a href="https://huggingface.co/k2-fsa/OmniVoice" target="_blank" rel="noopener">read model terms</a>.</p>
+        <button id="importOwnVoiceBtn" class="primary" type="submit">Import reference</button><p id="ownVoiceStatus" role="status"></p>
+      </form>
+    </details>
+    <p id="voiceLibrarySummary" role="status">Load the library to inspect reference quality and clone readiness.</p>
+    <label>Search voices <input id="voiceLibrarySearch" type="search" placeholder="Search Meera, Tara, Kabir…" /></label>
+    <label>Show voices<select id="voiceLibraryFilter"><option value="all">All · with quality status</option><option value="audition">With generated audition</option><option value="accepted">Accepted auditions</option><option value="blocked">Blocked references</option></select></label>
+    <div id="voiceLibraryList" class="voice-library-list"></div>
+  </section>
+  <div id="studioNotice" class="studio-notice hidden" role="status"></div>
+  <!-- Diagnostics Modal -->
+  <div id="diagnosticsModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="diagnosticsTitle">
+    <div class="modal panel diagnostics-dialog">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">LOCAL MACHINE</div>
+          <h2 id="diagnosticsTitle">System Diagnostics</h2>
+          <span class="hint">Hardware, GPU, runtime and local AI dependencies</span>
+        </div>
+        <button id="closeDiagnosticsModal" class="icon-btn" title="Close diagnostics">×</button>
+      </div>
+      <div class="diagnostic-actions modal-diagnostic-actions">
+        <span id="diagnosticsCheckedAt" class="hint">Checking local hardware and runtime…</span>
+        <button id="diagnosticsRefreshBtn" class="ghost small">Refresh checks</button>
+        <button id="downloadSupportBundleBtn" class="ghost small" title="Download sanitized support bundle JSON">Download Support Bundle</button>
+      </div>
+      <div id="diagnosticsSummary" class="diagnostics-summary">
+        <span class="diagnostic-spinner"></span> Collecting diagnostics from this computer…
+      </div>
+      <div id="diagnosticsGrid" class="diagnostics-grid"></div>
+      <details class="diagnostics-details">
+        <summary>Technical details &amp; errors</summary>
+        <pre id="diagnosticsRaw">No diagnostic report yet.</pre>
+      </details>
+    </div>
+  </div>
+
+  <!-- New Project Modal -->
+  <div id="modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="createTitle">
+    <div class="modal panel">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">NEW PROJECT</div>
+          <h2 id="createTitle">Create a dubbing project</h2>
+        </div>
+        <button id="closeModal" class="icon-btn" aria-label="Close new project dialog">×</button>
+      </div>
+      <label>Project name
+        <input id="projectName" maxlength="180" placeholder="e.g. Korean Movie - Hindi Dub">
+      </label>
+      <label>Target language
+        <select id="modalTarget">
+          <option value="Hindi" selected>Hindi</option>
+          <option value="English">English</option>
+          <option value="Korean">Korean</option>
+          <option value="Chinese">Chinese</option>
+        </select>
+      </label>
+      <div class="modal-actions">
+        <button id="cancelModal" class="ghost">Cancel</button>
+        <button id="createProject" class="primary glow-btn">Create Project</button>
+      </div>
+    </div>
+  </div>
+
+<script src="/assets/app.js?v=reference-intake-2"></script><script src="/assets/diagnostics.js?v=reference-intake-2"></script><script src="/assets/studio.js?v=reference-intake-2"></script><script src="/assets/voice-library.js?v=reference-intake-2"></script>
+<script src="/assets/speaker-workflow.js?v=reference-intake-2"></script><script src="/assets/compute.js?v=kaggle-foundation-1"></script><script src="/assets/setup.js?v=reference-intake-2"></script></body></html>

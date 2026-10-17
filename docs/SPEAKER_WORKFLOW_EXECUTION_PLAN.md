@@ -1,0 +1,16 @@
+# Approved speaker foundation and upload workflow
+
+13 October 2026. User approved the research recommendation and requested implementation plus embedded-browser testing using a short local video. No further plan approval is needed. Preserve existing dirty edits, original media, successful outputs and accepted voice takes.
+
+1. Add failing regression tests for dual raw/exclusive timelines, unique-speaker union attribution, actual overlap evidence and clean reference exclusion. Implement these contracts without changing source timestamps.
+2. Use Community-1's already installed learned `speaker_embeddings`, with explicit provenance, stable project IDs, uncertainty and persisted mapping. Add bounded cached long-source windows and continuity checks; no new model/framework install by default.
+3. Add source-time identity/overlap audit and a small evaluation harness; preserve unknown words and speaker candidates. Validate current behavior against fixtures, not synthetic pitch as proof of real identities.
+4. Connect evidence to normal full analysis and character registration. Save labels, clean listening windows and vocal descriptors separately from user-confirmed casting metadata. Retain existing voices on resume.
+5. Provide source samples, editable casting labels, merge/reassign controls and persistent voice locking in the white character UI. Locks contain actual configuration/reference hashes and revision; uncertain people/ages remain unclassified.
+6. Make upload/drop start ordered analysis by default, with a visible optional control. The sequence is source validation → vocal separation → ASR/diarization/global IDs → character/voice review → translation → synthesis → timing → preserved-background mix → render/decode. Pause before costly synthesis until required identities/voices are reviewed. Resume without regenerating valid stages.
+7. Implement visible dependency status, actionable setup failures and per-stage progress. No forced demographic claims, manufactured review flags, fictitious one-speaker fallback or completion labels without artifacts.
+8. Find an actual approximately one-to-three-minute source in the project/Downloads; validate streams, duration and decode before using it. Create a separate new test project. Test drag/drop or upload through Codex's embedded browser on localhost, not a direct-API substitution for the upload flow.
+9. Run relevant regressions and real analysis/review/resume. Verify source hashes, stable IDs, raw overlaps, clean anchors, persisted choices and actual generated audio/video where the existing approved voice/provider capabilities permit it. Report exact blocked review/model conditions without bypassing source-quality gates.
+10. Save local UI proof and a validation report distinguishing implementation/static tests from real-media findings. Keep private media/voice data/model binaries out of Git. This request does not authorize publishing or deleting existing projects.
+
+Optional overlap-source recovery and visual active-speaker fusion must be enabled only after real evidence; detecting overlap and retaining unresolved attribution is required now. Six original alignment tests passing does not certify full-film accuracy.

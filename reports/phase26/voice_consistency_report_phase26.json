@@ -1,0 +1,67 @@
+{
+  "overall_status": "PASS",
+  "character_count": 3,
+  "mid_movie_voice_switches": 0,
+  "violations": [],
+  "character_consistency": [
+    {
+      "character_id": "CHAR_001",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "-2%",
+      "base_pitch": "-3Hz",
+      "configuration_hash": "5cd3586d6245f0f6e11e9af11dc587664058ac41f29765f8a433b4f96e7d56ee",
+      "locked": true,
+      "segment_count": 11,
+      "scenes_evaluated": [
+        "SCENE_001",
+        "SCENE_003"
+      ],
+      "cross_scene_similarity": 0.9918,
+      "dubbed_f0_mean_hz": 263.28,
+      "dubbed_f0_std_hz": 11.11,
+      "mid_movie_voice_switches": 0,
+      "status": "PASS"
+    },
+    {
+      "character_id": "CHAR_002",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-SwaraNeural",
+      "base_rate": "+0%",
+      "base_pitch": "+0Hz",
+      "configuration_hash": "e3f98fabed3be03fc7089e72d8ea20069ee95f6201b53906a3a55739c2a7437a",
+      "locked": true,
+      "segment_count": 12,
+      "scenes_evaluated": [
+        "SCENE_001",
+        "SCENE_002",
+        "SCENE_003",
+        "SCENE_004"
+      ],
+      "cross_scene_similarity": 0.9604,
+      "dubbed_f0_mean_hz": 280.29,
+      "dubbed_f0_std_hz": 15.56,
+      "mid_movie_voice_switches": 0,
+      "status": "PASS"
+    },
+    {
+      "character_id": "CHAR_003",
+      "voice_engine": "edge-tts",
+      "voice_id": "hi-IN-MadhurNeural",
+      "base_rate": "+0%",
+      "base_pitch": "+0Hz",
+      "configuration_hash": "2f2bf3c47e41d30cb6ece3c5860c5d60f1269693ff12ee3d2dfcf140a7f6ba46",
+      "locked": true,
+      "segment_count": 5,
+      "scenes_evaluated": [
+        "SCENE_002",
+        "SCENE_003"
+      ],
+      "cross_scene_similarity": 0.9129,
+      "dubbed_f0_mean_hz": 152.59,
+      "dubbed_f0_std_hz": 12.2,
+      "mid_movie_voice_switches": 0,
+      "status": "PASS"
+    }
+  ]
+}

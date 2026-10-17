@@ -1,0 +1,15 @@
+name: Feature or documentation request
+description: Suggest a useful improvement, including non-code contributions.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or missing documentation
+      description: Describe the user task. Keep credentials and private media out of the report.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested behavior and how to verify it
+      description: Include hardware/language context if relevant; separate a proposal from verified capability.

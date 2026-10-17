@@ -1,0 +1,26 @@
+name: Bug report
+description: Report reproducible behavior without private media or credentials.
+body:
+  - type: markdown
+    attributes:
+      value: "Do not attach tokens, private recordings, movie clips or unredacted logs. Report security issues through SECURITY.md."
+  - type: input
+    id: revision
+    attributes:
+      label: Commit or release version
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: OS, Python and processing mode
+      description: Include GPU/model versions if relevant. Do not include account tokens.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps, expected result and actual result
+      description: Use a minimal permission-cleared reproduction. Describe timing/voice review separately from technical success.
+    validations:
+      required: true

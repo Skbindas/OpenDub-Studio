@@ -1,0 +1,8 @@
+{
+  "project_id": "53ba81b5-cc7c-4a68-944e-ff553456a917",
+  "stages_checkpointed": 12,
+  "segments_checkpointed": 28,
+  "segments_verified_reusable_on_resume": 28,
+  "duplicate_recomputations_on_resume": 0,
+  "status": "PASS"
+}

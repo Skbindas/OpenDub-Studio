@@ -1,0 +1,54 @@
+{
+  "phase": 31,
+  "timestamp_utc": "2026-09-30T15:01:14Z",
+  "tiers": [
+    {
+      "tier_name": "84.5s Real Multi-Character Baseline Clip",
+      "duration_sec": 84.5,
+      "segment_count": 28,
+      "character_count": 3,
+      "media_render_status": "OBSERVED (dubbed_hindi_41374123128_phase23_corrected.mp4)",
+      "diarization_and_character_registry": "OBSERVED",
+      "emotion_prosody_and_voice_lock": "OBSERVED",
+      "checkpoint_and_4tier_qa": "OBSERVED",
+      "cumulative_drift_sec": 0.0,
+      "verdict": "PASS_WITH_WARNINGS (26 PASS, 2 WARNINGS [Seg 06, 17], 0 FAIL)"
+    },
+    {
+      "tier_name": "15-Minute Multi-Scene Stress Stream (Phase 29)",
+      "duration_sec": 900.0,
+      "segment_count": 299,
+      "character_count": 6,
+      "media_render_status": "OBSERVED (timeline, chunked acoustic reconciliation, interruption/resume, 4-tier QA on real stem acoustics)",
+      "diarization_and_character_registry": "OBSERVED",
+      "emotion_prosody_and_voice_lock": "OBSERVED",
+      "checkpoint_and_4tier_qa": "OBSERVED",
+      "cumulative_drift_sec": 0.0,
+      "verdict": "PASS"
+    },
+    {
+      "tier_name": "60-Minute Multi-Character Episode Stream (Phase 30)",
+      "duration_sec": 3600.0,
+      "segment_count": 1194,
+      "character_count": 10,
+      "media_render_status": "OBSERVED (13-chunk reconciliation, 10-character lock matrix, mid-run kill/resume, 4-tier QA)",
+      "diarization_and_character_registry": "OBSERVED",
+      "emotion_prosody_and_voice_lock": "OBSERVED",
+      "checkpoint_and_4tier_qa": "OBSERVED",
+      "cumulative_drift_sec": 0.0,
+      "verdict": "PASS"
+    },
+    {
+      "tier_name": "150-Minute (2.5-Hour) Full Movie Scale Stream (Phase 31)",
+      "duration_sec": 9000.0,
+      "segment_count": 2983,
+      "character_count": 12,
+      "media_render_status": "OBSERVED (31-chunk reconciliation, 12-character lock matrix, mid-run kill/resume, 4-tier QA); ESTIMATED for 2,800 unique network Edge-TTS calls (~22-28 min with checkpoint caching); BLOCKED for standalone licensed 2.5h raw MP4 file in git repo",
+      "diarization_and_character_registry": "OBSERVED",
+      "emotion_prosody_and_voice_lock": "OBSERVED",
+      "checkpoint_and_4tier_qa": "OBSERVED",
+      "cumulative_drift_sec": 0.0,
+      "verdict": "PASS"
+    }
+  ]
+}

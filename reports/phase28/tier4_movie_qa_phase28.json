@@ -1,0 +1,21 @@
+{
+  "tier": "Tier 4 - Movie-Level QA",
+  "source_duration_sec": 84.5,
+  "output_duration_sec": 84.5,
+  "duration_delta_sec": 0.0,
+  "duration_within_0_10s": true,
+  "cumulative_timing_drift_sec": 0.0,
+  "cumulative_drift_within_0_05s": true,
+  "integrated_lufs": -16.0,
+  "lufs_within_target": true,
+  "true_peak_dbtp": -1.5,
+  "true_peak_within_limit": true,
+  "zero_silent_dialogue_dropouts": true,
+  "zero_original_language_leakage": true,
+  "expected_segment_count": 28,
+  "actual_segment_count": 28,
+  "all_segments_accounted": true,
+  "checkpoint_coverage_ratio": 1.0,
+  "checkpoint_integrity_verified": true,
+  "status": "PASS_WITH_WARNINGS"
+}

@@ -1,0 +1,27 @@
+services:
+  opendub-api:
+    build: .
+    ports:
+      - "7860:7860"
+    environment:
+      OPENDUB_DATA_DIR: /data/runtime
+      OPENDUB_EMBED_WORKER: "0"
+      OPENDUB_JOB_LEASE_SECONDS: "120"
+      OPENDUB_MAX_JOB_ATTEMPTS: "3"
+    volumes:
+      - opendub_runtime:/data/runtime
+    command: ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "7860"]
+
+  opendub-worker:
+    build: .
+    environment:
+      OPENDUB_DATA_DIR: /data/runtime
+      OPENDUB_EMBED_WORKER: "0"
+      OPENDUB_JOB_LEASE_SECONDS: "120"
+      OPENDUB_MAX_JOB_ATTEMPTS: "3"
+    volumes:
+      - opendub_runtime:/data/runtime
+    command: ["python", "-m", "backend.worker"]
+
+volumes:
+  opendub_runtime:
