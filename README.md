@@ -16,12 +16,12 @@ No user recordings, voice references, rendered videos, transcript samples, train
 
 ## Clone and run
 
-Anyone can clone the public source repository and propose a contribution. Install Git, Python and FFmpeg/FFprobe first; see [installation and download requirements](docs/INSTALL.md).
+For a fresh install, use the shallow clone commands below so Git downloads only the current clean source snapshot. Anyone can fork the repository and propose a contribution. Install Git, Python and FFmpeg/FFprobe first; see [installation and download requirements](docs/INSTALL.md).
 
 Windows PowerShell:
 
 ```powershell
-git clone https://github.com/Skbindas/OpenDub-Studio.git
+git clone --depth 1 https://github.com/Skbindas/OpenDub-Studio.git
 Set-Location OpenDub-Studio
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -32,7 +32,7 @@ python -m venv .venv
 Linux/macOS manual core path, after installing the system prerequisites:
 
 ```sh
-git clone https://github.com/Skbindas/OpenDub-Studio.git
+git clone --depth 1 https://github.com/Skbindas/OpenDub-Studio.git
 cd OpenDub-Studio
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
