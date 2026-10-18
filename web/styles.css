@@ -1111,3 +1111,5 @@ video {
 .own-voice-panel textarea,.own-voice-panel audio{width:100%;max-width:100%}
 .own-voice-panel input[type=file]{width:100%;min-width:0;padding:8px;border:1px solid #d7e1ec;background:#fff;border-radius:9px;font:inherit;font-size:.86rem}
 .own-voice-panel input[type=file]::file-selector-button{border:0;border-radius:6px;padding:8px 10px;margin-right:10px;background:#e8efff;color:#2455c8;font:inherit;cursor:pointer}
+
+.voice-direct-sample audio{display:block;width:100%;margin:8px 0}.voice-library-card h3{margin-bottom:8px}.voice-library-card details{margin-top:12px}.use-library-choice{margin-top:8px}

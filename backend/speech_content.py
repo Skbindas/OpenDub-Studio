@@ -71,7 +71,7 @@ def warm_content_batch(enabled=True):
                 _content_log = None
 
 
-def _warm_content_check(root, audio, report):
+def _warm_content_check(root, audio, report, language='hi'):
     global _content_process, _content_log
     if _content_process is None or _content_process.poll() is not None:
         if _content_log:
@@ -82,7 +82,7 @@ def _warm_content_check(root, audio, report):
             env={**os.environ,'PYTHONIOENCODING':'utf-8','CUDA_VISIBLE_DEVICES':'-1'})
     with tempfile.TemporaryDirectory(prefix='content-request-',dir=audio.parent) as folder:
         request = Path(folder)/'request.json'
-        request.write_text(json.dumps({'audio':str(audio.resolve()),'output':str(report.resolve())}),encoding='utf-8')
+        request.write_text(json.dumps({'audio':str(audio.resolve()),'output':str(report.resolve()),'language':language}),encoding='utf-8')
         _content_process.stdin.write(str(request)+'\n'); _content_process.stdin.flush()
         done = request.with_name('content-worker-result.json')
         deadline = time.monotonic()+240
@@ -98,7 +98,9 @@ def _warm_content_check(root, audio, report):
             raise RuntimeError(result.get('error') or 'CPU content check failed')
 
 
-def verify_clone_dialogue(expected: str, audio: Path) -> dict:
+def verify_clone_dialogue(expected: str, audio: Path, language='hi') -> dict:
+    from .dubbing_languages import target_language
+    language = target_language(language)[0]
     from .kaggle_tasks import project_for
     if project_for(audio):
         from .kaggle_operations import transcribe
@@ -106,11 +108,11 @@ def verify_clone_dialogue(expected: str, audio: Path) -> dict:
         cached=audio.with_suffix('.content.json')
         if cached.is_file():
             evidence=json.loads(cached.read_text(encoding='utf-8'))
-            if evidence.get('sha256')==digest(audio) and evidence.get('compute_provider')=='kaggle':
+            if evidence.get('sha256')==digest(audio) and evidence.get('compute_provider')=='kaggle' and evidence.get('language', 'hi') == language:
                 evidence.update(content_evidence(expected,evidence['transcript']));return evidence
-        result=transcribe(audio,'small','hi','cuda')
+        result=transcribe(audio,'small',language,'cuda')
         evidence={'sha256':digest(audio),'transcript':' '.join(row['text'] for row in result['segments']),
-            'model':'faster-whisper-small/pinned-kaggle','validator_version':2,'compute_provider':'kaggle'}
+            'model':'faster-whisper-small/pinned-kaggle','validator_version':2,'compute_provider':'kaggle','language':language}
         evidence.update(content_evidence(expected,evidence['transcript']));save_json(audio.with_suffix('.content.json'),evidence)
         return evidence
     """Validate in a disposable CPU worker before publishing a project revision."""
@@ -120,17 +122,17 @@ def verify_clone_dialogue(expected: str, audio: Path) -> dict:
     log_path = audio.with_suffix(".content.log")
     with _content_validation_lock, log_path.open("w", encoding="utf-8") as log:
         if _content_warm:
-            _warm_content_check(root, audio, report)
+            _warm_content_check(root, audio, report, language)
             returncode = 0
         else:
             result = subprocess.run([sys.executable, str(root / "scripts/check_speech_content.py"),
-                                     str(audio), str(report)], stdout=log, stderr=subprocess.STDOUT,
+                                     str(audio), str(report), language], stdout=log, stderr=subprocess.STDOUT,
                                     timeout=240)
             returncode = result.returncode
     if returncode or not report.is_file():
-        raise RuntimeError(f"Hindi content validation failed; previous audio retained. See {log_path}")
+        raise RuntimeError(f"Speech content validation failed; previous audio retained. See {log_path}")
     evidence = json.loads(report.read_text(encoding="utf-8"))
-    if evidence.get("sha256") != fingerprint(audio):
+    if evidence.get("sha256") != fingerprint(audio) or evidence.get("language", "hi") != language:
         raise RuntimeError("Generated audio changed during content validation")
     evidence.update(content_evidence(expected, evidence["transcript"]))
     return evidence
@@ -139,5 +141,5 @@ def verify_clone_dialogue(expected: str, audio: Path) -> dict:
 def require_clone_content(evidence: dict) -> None:
     if evidence.get("substantial_addition_suspected", False) or (
             evidence.get("status") != "asr_supporting_evidence_only" and evidence.get("substantial_omission_suspected", True)):
-        raise RuntimeError("Generated Hindi words need review before replacing project audio: "
+        raise RuntimeError("Generated words need review before replacing project audio: "
                            + evidence.get("transcript", "") + ". Previous successful audio retained.")

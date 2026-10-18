@@ -4,11 +4,15 @@ Experimental local-first AI video dubbing with speaker review, Hindi dubbing, re
 
 ![OpenDub Studio](web/brand/opendub-wordmark-v2.svg)
 
-**Experimental source alpha.** The MIT application source is provided without movie recordings, private voice catalogs, model weights or bundled media binaries. A real short-video Kaggle dub passed technical render/decode/timing checks; full movies, all language pairs/GPUs and final human listening quality are not certified. Read the [release scope](docs/RELEASE_READINESS.md) before installing.
+**Experimental source alpha.** The MIT application code is provided without user recordings, voice references, rendered videos, transcript samples, training datasets or model weights. Review the setup guides and third-party model terms before processing your own media.
 
-[Quick start](docs/QUICK_START.md) · [Model and asset terms](THIRD_PARTY_LICENSES/COMPONENTS.md) · [Release plan](docs/PUBLIC_ALPHA_IMPLEMENTATION_PLAN.md)
+[Quick start](docs/QUICK_START.md) · [Model and asset terms](THIRD_PARTY_LICENSES/COMPONENTS.md) · [Release notes](docs/RELEASE_NOTES_ALPHA.md)
 
-[FAQ](docs/FAQ.md) · [Before / after demo status](docs/DEMO.md) · [Release readiness](docs/RELEASE_READINESS.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+[FAQ](docs/FAQ.md) · [Demo details](docs/DEMO.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+## Media and test data
+
+No user recordings, voice references, rendered videos, transcript samples, training datasets or model weights are bundled in this repository. Automated tests are source code; do not add private recordings or generated exports as test fixtures. Use your own authorized inputs locally.
 
 ## Clone and run
 
@@ -45,23 +49,13 @@ Open the URL printed by the launcher (default http://127.0.0.1:7860), keep its t
 | Process with my Kaggle account | [Kaggle SDK, secure token, private inputs and execution](docs/KAGGLE_SETUP.md) |
 | What happens after upload? | [Step-by-step UI workflow and troubleshooting](docs/QUICK_START.md) |
 | What may I distribute or use commercially? | [Component terms](THIRD_PARTY_LICENSES/COMPONENTS.md) |
-| What still blocks public release? | [Implementation plan](docs/RELEASE_IMPLEMENTATION_PLAN.md) and [release readiness](docs/RELEASE_READINESS.md) |
-
-## Before / after
-
-The public original-language / Hindi-dubbed pair is **awaiting an owner-supplied, permission-cleared recording**. The private movie test is not a public sample. See the [demo preparation and acceptance checklist](docs/DEMO.md); no movie or voice-reference downloads are bundled here.
-
-| Original language | Hindi dub |
-| --- | --- |
-| Cleared source preview and original captions: pending | Matching generated preview, Hindi captions and listening acceptance: pending |
-
-Once cleared, the two labeled playback/download links will appear here. Brand concept images below are not before/after dubbing evidence.
+| What is the current software scope? | [Release notes](docs/RELEASE_NOTES_ALPHA.md) |
 
 ## Open contribution
 
 Anyone may propose code, documentation, tests, translations, accessibility improvements or bug reports once the repository is public. See [how to contribute](CONTRIBUTING.md). The maintainer reviews changes, tests, security/privacy and licenses before merging; submitting a PR does not automatically merge it.
 
-Created and maintained by **Suhaib · [@Skbindas](https://github.com/Skbindas)**, with **OpenAI Codex** AI-assisted development support. See [contributors and acknowledgments](CONTRIBUTORS.md) and the [maintainer review policy](docs/MAINTAINER_REVIEW.md). GitHub's contributor graph reflects actual eligible commits; Codex is acknowledged as a tool.
+Created and maintained by **Suhaib · [@Skbindas](https://github.com/Skbindas)**, with **OpenAI Codex** AI-assisted development support. See [contributors and acknowledgments](CONTRIBUTORS.md) and [how maintainers review contributions](docs/MAINTAINER_REVIEW.md). GitHub's contributor graph reflects actual eligible commits; Codex is acknowledged as a tool.
 
 **Simple workflow:** Upload video → choose language → review character voices → preview → export. Model/manual-stage settings live under Advanced. Local and Kaggle are explicit choices; cloud allocation is not guaranteed.
 
@@ -117,11 +111,13 @@ The backend loads a local `.env` without overriding existing environment variabl
 
 Auto-dub executes real processing stages. Missing model access, unresolved timing, failed separation, clipping, or failed render QA stop automatic export. The default mix retains the estimated instrumental stem at unity gain, without background ducking or whole-mix loudness normalization. Neural stems still require listening review. Reopening dialogue review keeps saved lines; it does not rerun translation.
 
-See [UI/UX upgrade plan](docs/UI_UX_UPGRADE_PLAN.md) and [verification report](docs/STUDIO_VERIFICATION.md).
+See the [first-run guide](docs/QUICK_START.md) for the actual UI workflow and troubleshooting.
 
 ## Brand artwork and your recordings
 
-![OpenDub Studio brand concept](web/brand/cover-ai-v1.png)
+<img src="web/brand/cover-ai-v1.png" alt="OpenDub Studio speech and audio concept illustration" width="420">
+
+The illustration is conceptual brand artwork. This repository and its releases do not bundle user media or before-and-after video samples.
 
 The [brand pack](web/brand/review.html) contains actual ImageGen sources, editable SVG adaptations, workflow icons and [generation prompts](web/brand/PROVENANCE.json). Open `/assets/brand/review.html` on your running localhost to review it. Exact image-model version was not exposed.
 

@@ -185,9 +185,11 @@ def execute(request,work,out):
         asr=WhisperModel(snapshot,device='cuda',compute_type='float16')
         for line in lines:
             destination=out/'lines'/line['key'];audio=destination/'speech.wav'
-            segments,_=asr.transcribe(str(audio),language='hi',beam_size=5)
+            from backend.dubbing_languages import target_language
+            language=target_language(line.get('prosody',{}).get('language','hi'))[0]
+            segments,_=asr.transcribe(str(audio),language=language,beam_size=5)
             transcript=' '.join(segment.text for segment in segments)
-            evidence={'sha256':sha(audio),'transcript':transcript,'model':validator,'validator_version':2,'compute_provider':'kaggle'}
+            evidence={'sha256':sha(audio),'transcript':transcript,'model':validator,'validator_version':2,'compute_provider':'kaggle','language':language}
             evidence.update(content_evidence(line['text'],transcript))
             (destination/'speech.content.json').write_text(json.dumps(evidence,ensure_ascii=False))
         return {'status':'completed','line_count':len(lines),'compute_provider':'kaggle'}

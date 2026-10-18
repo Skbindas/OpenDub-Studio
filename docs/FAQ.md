@@ -10,7 +10,7 @@ Follow [Quick start](QUICK_START.md), launch the local studio and check **Setup 
 
 ## Is Hindi dubbing tested?
 
-A real short-video Hindi path has technical render/timing/decode evidence. That does not certify every line, all speakers, full-length movies or other language pairs. See [release readiness](RELEASE_READINESS.md).
+A real short-video Chinese-to-Hindi path has technical render/timing/decode evidence. That does not certify every line, all speakers, full-length movies or other language pairs. See the current [demo status](DEMO.md).
 
 ## Will it always pick the right character voice automatically?
 
@@ -42,4 +42,4 @@ No. A static page can describe the product; media processing requires the Python
 
 ## Where is the before/after sample?
 
-The public pair is awaiting the owner's permission-cleared recording. [Demo preparation](DEMO.md) defines what will be published and checked. The private movie test is not a cleared public sample.
+The Chinese original and Hindi dub are available in the [GitHub README preview](../README.md#before-and-after-chinese--hindi--english). English dubbing is still in progress. The private voice-reference bank is not a public download.

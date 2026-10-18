@@ -1,3 +1,9 @@
+function filterLibraryVoices(rows, query = "", mode = "all") {
+  const needle = String(query).trim().toLocaleLowerCase();
+  return rows.filter(v => v.sample_available !== false)
+    .filter(v => [v.display_name,v.character_name,v.character_id].filter(Boolean).join(" ").toLocaleLowerCase().includes(needle))
+    .filter(v => mode === "all" || (mode === "audition" && v.clone?.status === "completed") || (mode === "accepted" && v.audition_accepted) || (mode === "blocked" && v.selection_blockers?.length));
+}
 /* Reference evidence and cloned auditions are distinct. No automatic promotion. */
 (() => {
   let voices = [];
@@ -22,8 +28,9 @@
       : "No substantial missing speech detected. Confirm pronunciation and similarity by listening.";
   }
   function render() {
-    const query = search.value.toLowerCase();
-    list.innerHTML = voices.filter(v => v.sample_available !== false).filter(v => `${v.display_name} ${v.character_name} ${v.character_id}`.toLowerCase().includes(query)).filter(v => filter.value === "all" || (filter.value === "audition" && v.clone?.status === "completed") || (filter.value === "accepted" && v.audition_accepted) || (filter.value === "blocked" && v.selection_blockers?.length)).map(v => {
+    const shown = filterLibraryVoices(voices, search.value, filter.value);
+    list.querySelectorAll('audio').forEach(audio => audio.pause());
+    list.innerHTML = shown.map(v => {
       const status = v.audit?.status || "not_audited";
       const review = v.review || {};
       const repair = (v.repairs || []).find(r => r.clone_audio_url && r.audit?.status === "single_speaker_candidate" && r.clone?.reference_sha256 === r.sha256 && !r.clone?.content_check?.substantial_omission_suspected && !r.clone?.content_check?.substantial_addition_suspected);
@@ -32,6 +39,8 @@
         ["clone_identity_passed","Clone sounds like reference"],["naturalness_passed","Clone speech sounds natural"],
         ["dialogue_content_passed","Clone speaks every requested word"]];
       return `<article class="voice-library-card"><h3>${escapeHtml(v.display_name || v.character_name)}</h3>
+        <label class="voice-direct-sample">Original reference<audio controls preload="none" aria-label="${escapeHtml(v.display_name)} original reference" src="${escapeHtml(v.audio_url)}"></audio></label>
+        <button class="ghost pick-library-voice" data-voice-id="${escapeHtml(v.character_id)}" ${v.selection_blockers?.length ? "disabled" : ""}>Choose for a character</button>
         ${v.audit?.method === "user_reviewed_upload" ? `<p class="hint">Your source review · automatic ASR and speaker analysis have not been run.</p>` : ""}
         <p class="character-meta">${v.audition_accepted ? "Audition accepted" : "Listening review pending"} · ${escapeHtml(v.perceived_voice?.type || "Voice type unreviewed")}</p>
         ${v.selection_blockers?.length ? `<p class="voice-warning">Needs repair: ${v.selection_blockers.map(x=>escapeHtml(labels[x] || x.replaceAll("_", " "))).join(" · ")}</p>` : ""}
@@ -59,7 +68,13 @@
           <label>Exact reference words<textarea data-review="reference_text" maxlength="4000">${escapeHtml(v.audit?.speech_text || "")}</textarea></label>
           <button class="ghost save-voice-review" data-voice-id="${escapeHtml(v.character_id)}" ${status === "not_audited" ? "disabled" : ""}>Save review</button>
           <p class="hint" role="status"></p></details></article>`;
-    }).join("") || '<p>No matching voices.</p>';
+    }).join("") || (voices.some(v=>v.sample_available!==false) ? '<p>No matching voices. Use Browse all to clear filters.</p>' : '<p>No installed references yet. Add your own recording above.</p>');
+    list.querySelectorAll('.pick-library-voice').forEach(btn => btn.addEventListener('click',()=>{
+      window.SpeakerWorkflow?.pickVoice(btn.dataset.voiceId);
+    }));
+    list.querySelectorAll('audio').forEach(audio=>audio.addEventListener('play',()=>{
+      document.querySelectorAll('audio, video').forEach(other=>{if(other!==audio)other.pause();});
+    }));
     list.querySelectorAll(".review-repair").forEach(btn => btn.addEventListener("click", () => {
       const card = btn.closest("article"), select = card.querySelector('[data-review="repair_choice"]');
       if(select){ select.closest("details").open = true; select.value = btn.dataset.choice; select.dispatchEvent(new Event("change")); select.focus(); }
@@ -81,15 +96,18 @@
       card.querySelectorAll('input[type="checkbox"][data-review]').forEach(input=>{input.checked=false;});
     }));
   }
-  button.addEventListener("click", async () => {
+  async function loadLibrary() {
     button.disabled = true; summary.textContent = "Loading saved voice evidence...";
     try {
       const bank = await api("/api/voices/bank"); voices = bank.voices;
       summary.textContent = `${bank.voices.filter(v=>v.sample_available!==false).length} installed samples · ${bank.total} catalog entries · ${bank.verified} verified default candidates · ${bank.clone_runtime.completed_auditions || 0} cloned auditions · ${bank.accepted_auditions || 0} accepted auditions · ${bank.repaired_auditions || 0} repaired-speaker auditions.`;
       render();
-    } catch(error) { summary.textContent = error.message; }
+    } catch(error) { summary.textContent = "Library unavailable: " + error.message; list.replaceChildren(); }
     finally { button.disabled = false; }
-  });
+  }
+  button.addEventListener('click',()=>{search.value='';filter.value='all';return loadLibrary();});
+  window.addEventListener('opendub:voice-library-changed',loadLibrary);
+  loadLibrary();
   search.addEventListener("input", render);
   filter.addEventListener("change", render);
 })();
