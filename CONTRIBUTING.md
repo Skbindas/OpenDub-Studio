@@ -2,7 +2,7 @@
 
 OpenDub Studio is experimental. Please describe reproducible behavior and distinguish a technical test from real listening acceptance.
 
-**Everyone is welcome to contribute** code, documentation, tests, translations, accessibility fixes, reproducible bug reports and reviewed setup improvements. While the repository is private, access is limited; after publication anyone can fork it and propose a pull request. New contributors can start with a small documentation/bug fix or discuss a larger change in an issue first.
+**Everyone is welcome to contribute** code, documentation, tests, translations, accessibility fixes, reproducible bug reports and reviewed setup improvements. This repository is public: anyone can fork it and propose a pull request. New contributors can start with a small documentation/bug fix or discuss a larger change in an issue first.
 
 ## Fork and propose a change
 
@@ -21,7 +21,7 @@ Follow [installation](docs/INSTALL.md). Make a focused change and stage only int
 
 1. Read README.md, docs/QUICK_START.md and the component terms.
 2. Create a focused branch and add a regression test for behavior changes.
-3. Run `python -m pytest -q -k "not feature_length"` and `node --test tests/test_studio_frontend.cjs tests/test_public_alpha_frontend.cjs`. Media integration tests need FFmpeg/FFprobe and the relevant test dependencies; see CI for its exact environment.
+3. Run `python -m pytest -q -k "not feature_length"` and `node --test tests/test_studio_frontend.cjs tests/test_public_alpha_frontend.cjs`. Media integration tests need FFmpeg/FFprobe and the relevant test dependencies; see the [testing guide](docs/TESTING.md) and CI for the exact environment.
 4. Run `git diff --check` and review staged files. Keep user recordings, exports, voice references, keys, models and local runtime outside Git.
 5. In a pull request, explain the trigger, behavior change, verification and remaining limits. Use permission-cleared minimal reproduction data only.
 
