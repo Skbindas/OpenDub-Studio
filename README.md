@@ -1,6 +1,6 @@
 # OpenDub Studio
 
-Experimental local-first AI video dubbing with speaker review, Hindi dubbing, resumable jobs and optional personal Kaggle processing.
+Experimental local-first AI video dubbing with speaker review, Hindi/English dialogue workflows, resumable jobs and optional personal Kaggle processing.
 
 ![OpenDub Studio](web/brand/opendub-wordmark-v2.svg)
 
@@ -17,6 +17,55 @@ Experimental local-first AI video dubbing with speaker review, Hindi dubbing, re
 ## Media and test data
 
 No user recordings, voice references, rendered videos, transcript samples, training datasets or model weights are bundled in this repository. Automated tests are source code; do not add private recordings or generated exports as test fixtures. Use your own authorized inputs locally.
+
+## What OpenDub Studio does
+
+OpenDub Studio runs a Python backend on your computer and presents a browser workspace for video localization. It coordinates transcription, speaker review, translation, speech generation, timing, background separation, mixing and export. The core installation supplies the workspace; neural stages require optional packages, models and access.
+
+| Capability | Current behavior and review boundary |
+| --- | --- |
+| Project workspace | Local project files, SQLite job records and persisted stage progress |
+| Speech analysis | Optional ASR and diarization produce dialogue/speaker candidates; review missed speech and overlapping turns |
+| Character casting | Review speaker groups and assign stable, authorized voice references; age/gender hints are not verified identities |
+| Translation | Configured providers generate target dialogue; review meaning, language and timing before synthesis |
+| Voice generation | Optional neural synthesis with clean reference audio; no bundled default movie voice pack |
+| Timing and mix | Fit dialogue, estimate retained backgrounds and inspect speech/mix QA; separation and timing can require corrections |
+| Export | Preview and render after review gates; technical QA does not establish listening quality or lip synchronization |
+| Compute | Explicit local or personal Kaggle execution and checkpoint recovery; allocation is not guaranteed |
+
+This is an experimental source alpha. A short successful scene does not establish unattended full-movie accuracy, perfect character detection or a fixed processing time.
+
+## Architecture
+
+```text
+Browser workspace (web/)
+        |
+FastAPI API (backend/app.py)
+        |
+Project manifests + SQLite job queue
+        |
+Auto-dub orchestration / worker leases
+        |
+Analysis -> speaker review -> translation -> speech -> timing -> mix -> render QA
+        |
+Local optional engines OR explicitly selected Kaggle worker
+```
+
+The launcher starts the local API and normally its embedded worker. A separate worker is available for server operation. Credentials are resolved at execution time; model/runtime artifacts are not part of the source distribution. See [architecture and stage ownership](docs/ARCHITECTURE.md) and [server deployment](docs/DEPLOYMENT-SERVER.md).
+
+## System requirements and prerequisites
+
+Use Python 3.11 as the CI-aligned starting point, Git, FFmpeg and FFprobe on PATH. Core package metadata accepts Python 3.10+; optional engines can impose narrower constraints. Node.js is needed for frontend development checks, not ordinary studio use.
+
+| Workload | Planning guidance, not a certified minimum |
+| --- | --- |
+| UI and project review | A current Windows/Linux computer with space and memory for Python and your media; the UI alone needs no discrete GPU |
+| Local neural processing | Plan for 16 GB or more system RAM and a supported GPU where the engine supports one; actual VRAM depends on model, precision and batch size |
+| CPU-only processing | Supported stages can run more slowly; optional engines have separate platform constraints |
+| Kaggle | Your account, secure credentials, internet, required model permissions and available quota/accelerator |
+| Storage | Allow space for source media, models, PCM audio, stems, speech takes and exports; intermediates can exceed source-video size |
+
+No universal GPU/VRAM or movie-length runtime promise is made. Check **Setup & readiness** before a short real-media test. Windows is the primary local launcher path; Linux CI checks source behavior. Full macOS and AMD/Intel neural acceleration remain unverified. See [installation prerequisites](docs/INSTALL.md) and [local engine setup](docs/LOCAL_SETUP.md).
 
 ## Clone and run
 
@@ -57,7 +106,7 @@ Open the URL printed by the launcher (default http://127.0.0.1:7860), keep its t
 
 ## Open contribution
 
-Anyone may propose code, documentation, tests, translations, accessibility improvements or bug reports once the repository is public. See [how to contribute](CONTRIBUTING.md). The maintainer reviews changes, tests, security/privacy and licenses before merging; submitting a PR does not automatically merge it.
+Anyone may propose code, documentation, tests, translations, accessibility improvements or bug reports in this public repository. See [how to contribute](CONTRIBUTING.md). The maintainer reviews changes, tests, security/privacy and licenses before merging; submitting a PR does not automatically merge it.
 
 Created and maintained by **Suhaib · [@Skbindas](https://github.com/Skbindas)**, with **OpenAI Codex** AI-assisted development support. See [contributors and acknowledgments](CONTRIBUTORS.md) and [how maintainers review contributions](docs/MAINTAINER_REVIEW.md). GitHub's contributor graph reflects actual eligible commits; Codex is acknowledged as a tool.
 
@@ -72,6 +121,10 @@ Removed projects retain their local files and project metadata in `runtime/delet
 Local-first, open-source AI dubbing studio for video and movie localization.
 
 > Experimental software. Review generated speech, timing, character assignments and separated backgrounds before delivery.
+
+## Automated tests
+
+Run the application regression suite and frontend checks using the [testing guide](docs/TESTING.md). It documents CI dependencies, commands, skipped optional integrations and the distinction between technical checks and real-media listening acceptance.
 
 ## Goals
 

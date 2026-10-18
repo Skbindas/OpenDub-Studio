@@ -1,6 +1,6 @@
 # Optional Kaggle processing
 
-This experimental backend uses **your own account**. Local remains the default. A real 84-second Hindi cloud dub passed technical checks; human listening/identity acceptance, full movies and actual provider GPU-withdrawal/replacement remain unverified. See the [public demo details](DEMO.md). No account is guaranteed an accelerator or quota.
+This experimental backend uses **your own account**. Local remains the default. Validate your own short scene before a full movie. Human listening/identity acceptance and actual provider GPU-withdrawal/replacement need separate verification. See the [media distribution policy](DEMO.md). No account is guaranteed an accelerator or quota.
 
 ## Install and launch from a clone
 

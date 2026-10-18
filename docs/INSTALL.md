@@ -1,6 +1,6 @@
 # Clone, install and launch
 
-The repository is currently private; cloning requires owner-granted GitHub access until publication. Do not add a token to a clone URL. These commands assume a terminal opened in your chosen parent folder, with Git and Python already installed.
+The repository is public; cloning requires no GitHub token or owner-granted access. Do not add credentials to a clone URL. These commands assume a terminal opened in your chosen parent folder, with Git and Python already installed.
 
 ## Downloads and accounts
 
@@ -11,7 +11,7 @@ The repository is currently private; cloning requires owner-granted GitHub acces
 | Local speakers | requirements-diarization.txt; your own Community-1 access and HF token | No gated weights/token |
 | Local clone | Separate clone environment; requirements-cloning.txt; compatible PyTorch and OmniVoice checkpoint | No weights/voice pack |
 | Local separation | requirements-separation.txt; selected checkpoint and any companion config | No weights/binaries |
-| Natural Hindi translation | Your configured supported provider/model and its credentials, or separately configured local service | No credentials |
+| Hindi/English translation | Your configured supported provider/model and its credentials, or separately configured local service | No credentials |
 | Kaggle execution | Python 3.11+, requirements-kaggle.txt via setup helper, your account/token and available accelerator/quota | SDK requirements/worker code only |
 | Audition/demo | Your clean single-speaker recordings and source scene, with appropriate permissions | No private recordings |
 
@@ -29,7 +29,7 @@ winget install --exact --id Gyan.FFmpeg
 Choose/install Python separately, then:
 
 ```powershell
-git clone https://github.com/Skbindas/OpenDub-Studio.git
+git clone --depth 1 https://github.com/Skbindas/OpenDub-Studio.git
 Set-Location OpenDub-Studio
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -46,7 +46,7 @@ Install Python, Git and FFmpeg/FFprobe using your OS's supported package manager
 ```sh
 sudo apt-get update
 sudo apt-get install git python3 python3-venv ffmpeg
-git clone https://github.com/Skbindas/OpenDub-Studio.git
+git clone --depth 1 https://github.com/Skbindas/OpenDub-Studio.git
 cd OpenDub-Studio
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
