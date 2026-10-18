@@ -701,8 +701,8 @@ async function runAutoDubPipeline(projectId){
   const targetLang = $("targetLanguage")?.value || "hi";
   const payload = {
     source_language: sourceLang === "Auto Detect" ? "auto" : sourceLang,
-    target_language: targetLang === "Hindi" ? "hi" : targetLang,
-    target_language_name: "Hindi",
+    target_language: normalizeLanguageCode(targetLang),
+    target_language_name: targetLang,
     model_size: $("asrModel")?.value || "small",
     voice_model_path: $("voiceModelPath")?.value?.trim() || null,
     auto_download: Boolean($("autoFullPipelineToggle")?.checked),

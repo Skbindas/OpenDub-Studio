@@ -14,6 +14,6 @@ Before merging each PR:
 
 ## Hosting enforcement
 
-CODEOWNERS requests @Skbindas review when supported. It does **not** prevent merging by itself. CI now explicitly requests read-only repository contents. Actual main-branch rules/required checks/review protection have not been configured or certified here; availability depends on the owner's GitHub plan/repository settings. Inspect the available rules before choosing enforcement. A sole maintainer cannot approve their own PR as a second independent reviewer; do not promise an impossible review gate.
+CODEOWNERS requests review from @Skbindas where GitHub supports it, but branch protection must be configured separately in repository settings. Keep required CI and review checks aligned with the current maintainer capacity. Do not promise an independent second reviewer when the project has a single maintainer.
 
-Do not enable auto-merge or bypass review for convenience. The public release also requires the separate history/assets/demo checks in RELEASE_READINESS.md.
+Review the current diff, checks, licenses and demo permissions before merging. Do not bypass configured required checks to merge a change.

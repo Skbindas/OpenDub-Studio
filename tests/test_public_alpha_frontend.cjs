@@ -37,3 +37,16 @@ test('a previously accepted low-register voice does not outrank a matching high-
     {voice_id:'higher',audition_accepted:false,vocal_type:'higher',pitch_median_hz:240}],{vocal_type:'higher',pitch_median_hz:248});
   assert.equal(ranked[0].voice_id,'higher');
 });
+
+function filter(rows,query='',mode='all'){
+ const source=fs.readFileSync('web/voice-library.js','utf8');
+ const end=source.indexOf('/* Reference evidence');
+ const context={};vm.createContext(context);vm.runInContext(source.slice(0,end),context);
+ return context.filterLibraryVoices(rows,query,mode);
+}
+test('browse shows installed voices without requiring prior name knowledge',()=>{
+ assert.equal(filter([{display_name:'Meera',sample_available:true},{display_name:'Not installed',sample_available:false}]).length,1);
+});
+test('search finds a previously discovered name regardless of case and surrounding spaces',()=>{
+ assert.equal(filter([{display_name:'Meera',sample_available:true}],'  MEERA  ').length,1);
+});

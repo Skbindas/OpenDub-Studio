@@ -18,7 +18,9 @@ def generation_options(prosody, prompt):
     mode = prosody.get('duration_mode', 'fixed')
     if mode not in {'fixed', 'natural'}:
         raise ValueError('Unsupported speech duration mode')
-    options = {'language': 'Hindi', 'voice_clone_prompt': prompt,
+    from backend.dubbing_languages import target_language
+    code, name = target_language(prosody.get('language', 'hi'))
+    options = {'language': name, 'voice_clone_prompt': prompt,
                'num_step': max(16, min(128, int(prosody.get('generation_steps', 64)))),
                'speed': max(.9, min(1.1, float(prosody.get('rate', 1))))}
     # A source clock is still enforced by the separate native timing-fit gate.
@@ -84,7 +86,7 @@ def main(request=None):
     steps = options['num_step']
     seed = int(prosody.get("seed", 42))
     torch.manual_seed(seed)
-    print("[Clone] Reference encoded; synthesizing Hindi speech", flush=True)
+    print("[Clone] Reference encoded; synthesizing requested speech", flush=True)
     completed_steps = 0
     def progress(module, inputs, result):
         nonlocal completed_steps
@@ -123,6 +125,7 @@ def main(request=None):
     report = {"status": "completed", "reference_conditioned": True, "engine": "OmniVoice",
               "model": "k2-fsa/OmniVoice", "provider_version": "0.2.1", "device": device,
               "tokenizer_device": "cpu", "requested_duration_sec": prosody.get("target_duration_sec"),
+              "language": prosody.get("language", "hi"),
               "generation_duration_mode": prosody.get('duration_mode', 'fixed'),
               "generation_steps": steps, "seed": seed,
               "file": str(output), "output_sha256": fingerprint(output), "reference_sha256": digest,

@@ -190,9 +190,9 @@ def execute_auto_dub(job_id: str, project_id: str, options: dict) -> None:
             review=review_state(base,registry)
             state['speaker_review']=review
             if not review['ready_for_dubbing']:
-                raise SpeakerReviewRequired('Review speakers and lock Hindi voices: '+' '.join(review['blocking']))
+                raise SpeakerReviewRequired('Review speakers and lock character voices: '+' '.join(review['blocking']))
         if not reusable(3, "analysis/translated_transcript.json", "analysis/dialogue_manifest.json"):
-            progress(3, 45, "Translating timestamped dialogue into Hindi")
+            progress(3, 45, "Translating timestamped dialogue into " + options.get("target_language", "hi"))
             with track(base, job_id, "translation", "lines"):
                 translation_result = studio.translate_project(project_id, studio.TranslationRequest(
                     target_language=options.get("target_language", "hi"), source_language=state["detected_language"],

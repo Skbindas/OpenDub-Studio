@@ -1383,14 +1383,17 @@ def translate_project(project_id: str, body: TranslationRequest) -> dict[str, An
     if not identity["ready"]:
         raise HTTPException(status_code=409, detail="Complete movie analysis and automatic Character Registry sync before translation.")
     print(f"\n[OpenDub Translation] Starting translation for project {project_id} to '{body.target_language}'...", flush=True)
+    requested_target = body.target_language.strip().lower()
+    requested_target = {"hindi": "hi", "english": "en"}.get(requested_target, requested_target)
     refresh_dialogue_manifest(project_id)
     try:
-        if body.conversational_hindi and body.target_language in {"hi", "hindi"}:
-            from .automatic_dialogue import translate_natural_hindi, source_subtitle_context
+        if body.conversational_hindi and requested_target in {"hi", "en"}:
+            from .automatic_dialogue import translate_natural_hindi, translate_natural_english, source_subtitle_context
             project = get_project(DB_PATH, project_id)
             source = (ROOT / project["source_path"]).resolve()
             cues = source_subtitle_context(source, base / "analysis")
-            result = translate_natural_hindi(base / "analysis" / "transcript.json", base / "analysis" / "translated_transcript.json", context={"source_filename":source.name,"subtitle_cues":cues})
+            translate_natural = translate_natural_english if requested_target == 'en' else translate_natural_hindi
+            result = translate_natural(base / "analysis" / "transcript.json", base / "analysis" / "translated_transcript.json", context={"source_filename":source.name,"subtitle_cues":cues})
         else:
             result = translate_transcript(
             base / "analysis" / "transcript.json",
@@ -1978,6 +1981,9 @@ def prepare_synthesis_inputs(project_id: str, segment_index: int, body: Synthesi
             selected_model_path = str(available_models[0].resolve())
     if not selected_model_path and selected_clone_profile is None:
         raise HTTPException(status_code=409, detail="No Piper voice model assigned. Configure the character voice profile or provide voice_model_path for a legacy project.")
+    if selected_clone_profile is not None:
+        from .dubbing_languages import target_language
+        prosody['language'] = target_language(translated.get('target_language', 'hi'))[0]
     return dict(translated_path=translated_path,translated=translated,rows=rows,row=row,text=text,output=output,
                 prosody=prosody,selected_model_path=selected_model_path,selected_clone_profile=selected_clone_profile,
                 profile=profile,selected_speaker_id=selected_speaker_id,manifest_path=manifest_path)
@@ -2011,7 +2017,7 @@ def synthesize_segment(project_id: str, segment_index: int, body: SynthesisReque
             result = synthesize_reference(text, selected_clone_profile["reference"], selected_clone_profile["ref_text"], temp_output, prosody)
             from .speech_content import verify_clone_dialogue, require_clone_content
             from .voice_bank_quality import write_report
-            content_check = verify_clone_dialogue(text, temp_output)
+            content_check = verify_clone_dialogue(text, temp_output) if prosody.get('language', 'hi') == 'hi' else verify_clone_dialogue(text, temp_output, language=prosody['language'])
             result["content_check"] = content_check
             write_report(temp_output.with_suffix(".content.json"), content_check)
             if content_check.get("substantial_omission_suspected"):
@@ -3078,8 +3084,8 @@ AUTO_DUB_STAGES = [
     {"key": "frame_audio_extraction", "title": "Audio Extraction & Source Check", "activeLabel": "Extracting source audio & checking media..."},
     {"key": "language_detection", "title": "Automatic Source Language Detection", "activeLabel": "Auto-detecting source language..."},
     {"key": "character_voice_matching", "title": "Speaker & Voice Matching", "activeLabel": "Matching voices to detected speakers..."},
-    {"key": "hindi_translation", "title": "Hindi Dialogue Translation & Adaptation", "activeLabel": "Hindi Dialogue Translation & Adaptation..."},
-    {"key": "multi_character_tts", "title": "Multi-Character Neural TTS Generation", "activeLabel": "Generating multi-character Hindi TTS..."},
+    {"key": "hindi_translation", "title": "Dialogue Translation & Adaptation", "activeLabel": "Translating target-language dialogue..."},
+    {"key": "multi_character_tts", "title": "Multi-Character Neural TTS Generation", "activeLabel": "Generating multi-character speech..."},
     {"key": "vocal_removal_render", "title": "Vocal Separation, BGM/SFX Sync & Final Video Render", "activeLabel": "Muting original vocals (preserving BGM/SFX) & rendering video..."},
 ]
 

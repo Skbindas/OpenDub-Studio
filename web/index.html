@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>OpenDub Studio | Hindi dubbing workspace</title>
+  <title>OpenDub Studio | Video dubbing workspace</title>
   <meta name="description" content="A local workspace for translation, dialogue timing and background-preserving Hindi dubbing.">
   <link rel="icon" href="/favicon.ico?v=brand-v2" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/styles.css?v=reference-intake-2">
+  <link rel="stylesheet" href="/assets/styles.css?v=comparison-voices-3">
 </head>
 <body>
   <a class="skip-link" href="#projectPanel">Skip to workspace</a>
@@ -259,13 +259,13 @@
     <div class="progress-meta hint"><span id="autoDubElapsed">Elapsed: 00m 00s</span><span id="autoDubEta">Stage estimate available during processing</span></div>
     <div id="autoDubWorkCount" class="hint" aria-live="polite"></div>
     <div id="autoDubCapacity" class="hint">Hardware capacity is checked before processing</div>
-    <ol id="autoDubStageList" class="auto-dub-stage-list"><li class="auto-dub-stage-item is-pending" data-stage="1"><span class="stage-check-icon">1</span><div class="stage-check-body"><strong>Analyze source</strong><span>Audio and scene analysis</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="2"><span class="stage-check-icon">2</span><div class="stage-check-body"><strong>Transcribe</strong><span>Language and timestamps</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="3"><span class="stage-check-icon">3</span><div class="stage-check-body"><strong>Match speakers</strong><span>Review character identities</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="4"><span class="stage-check-icon">4</span><div class="stage-check-body"><strong>Translate</strong><span>Natural Hindi dialogue</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="5"><span class="stage-check-icon">5</span><div class="stage-check-body"><strong>Synthesize & fit</strong><span>Speech within timing limits</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="6"><span class="stage-check-icon">6</span><div class="stage-check-body"><strong>Mix & render</strong><span>Background preserved; QA checked</span></div><span class="stage-check-status">Pending</span></li></ol>
+    <ol id="autoDubStageList" class="auto-dub-stage-list"><li class="auto-dub-stage-item is-pending" data-stage="1"><span class="stage-check-icon">1</span><div class="stage-check-body"><strong>Analyze source</strong><span>Audio and scene analysis</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="2"><span class="stage-check-icon">2</span><div class="stage-check-body"><strong>Transcribe</strong><span>Language and timestamps</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="3"><span class="stage-check-icon">3</span><div class="stage-check-body"><strong>Match speakers</strong><span>Review character identities</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="4"><span class="stage-check-icon">4</span><div class="stage-check-body"><strong>Translate</strong><span>Target-language dialogue</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="5"><span class="stage-check-icon">5</span><div class="stage-check-body"><strong>Synthesize & fit</strong><span>Speech within timing limits</span></div><span class="stage-check-status">Pending</span></li><li class="auto-dub-stage-item is-pending" data-stage="6"><span class="stage-check-icon">6</span><div class="stage-check-body"><strong>Mix & render</strong><span>Background preserved; QA checked</span></div><span class="stage-check-status">Pending</span></li></ol>
     <a id="autoDubDownloadBtn" class="primary hidden" href="#" download>Download Hindi video</a>
     <div id="autoDubVideoPreviewWrap" class="hidden"><h3>Final render</h3><p class="hint">Check dialogue, timing and background by listening before delivery.</p><video id="finalVideoPreview" controls preload="metadata"></video></div>
   </div>
 </section>
 <section id="previewSection" class="panel" aria-labelledby="previewTitle"><div class="section-head"><div><h2 id="previewTitle">Listen & compare</h2><p class="hint">Preview the actual project files. Each track becomes available after its processing stage.</p></div><button id="refreshPreviewsBtn" class="ghost">Refresh audio</button></div>
-  <div class="preview-grid"><div class="source-preview"><h3>Original scene</h3><video id="sourcePreview" controls preload="metadata" aria-label="Original video preview"></video><p id="sourcePreviewStatus" class="hint">Upload a source video first.</p></div><div class="audio-previews"><div class="audio-preview-row"><label for="vocalsPlayer">Isolated vocals</label><audio id="vocalsPlayer" controls preload="none" class="hidden"></audio><span id="vocalsStatus" class="hint">Not generated yet</span></div><div class="audio-preview-row"><label for="backgroundPlayer">Music & effects</label><audio id="backgroundPlayer" controls preload="none" class="hidden"></audio><span id="backgroundStatus" class="hint">Not generated yet</span></div><div class="audio-preview-row"><label for="mixPlayer">Hindi soundtrack</label><audio id="mixPlayer" controls preload="none" class="hidden"></audio><span id="mixStatus" class="hint">Not generated yet</span></div></div></div><div class="spectrum-head"><h3>Playback spectrum</h3><span id="spectrumStatus" class="hint">Play a preview to measure its audio.</span></div><canvas id="measuredSpectrum" width="900" height="100" role="img" aria-label="Measured playback frequency spectrum. Audio previews are also available without the graph."></canvas><div class="spectrum-labels"><span>0 Hz</span><span>Frequency (linear)</span><span id="spectrumMax">24 kHz</span></div></section>
+  <div class="preview-grid"><div class="source-preview"><h3>Original scene</h3><video id="sourcePreview" controls preload="metadata" aria-label="Original video preview"></video><p id="sourcePreviewStatus" class="hint">Upload a source video first.</p></div><div class="audio-previews"><div class="audio-preview-row"><label for="vocalsPlayer">Isolated vocals</label><audio id="vocalsPlayer" controls preload="none" class="hidden"></audio><span id="vocalsStatus" class="hint">Not generated yet</span></div><div class="audio-preview-row"><label for="backgroundPlayer">Music & effects</label><audio id="backgroundPlayer" controls preload="none" class="hidden"></audio><span id="backgroundStatus" class="hint">Not generated yet</span></div><div class="audio-preview-row"><label for="mixPlayer">Dubbed soundtrack</label><audio id="mixPlayer" controls preload="none" class="hidden"></audio><span id="mixStatus" class="hint">Not generated yet</span></div></div></div><div class="spectrum-head"><h3>Playback spectrum</h3><span id="spectrumStatus" class="hint">Play a preview to measure its audio.</span></div><canvas id="measuredSpectrum" width="900" height="100" role="img" aria-label="Measured playback frequency spectrum. Audio previews are also available without the graph."></canvas><div class="spectrum-labels"><span>0 Hz</span><span>Frequency (linear)</span><span id="spectrumMax">24 kHz</span></div></section>
 <section class="panel">          <!-- Timeline & Character Registry Shell -->
           <div class="timeline-shell" id="dialogueSection">
             <div class="section-head compact">
@@ -298,7 +298,7 @@
   <section class="panel voice-library-panel" id="voiceLibrarySection" aria-labelledby="voiceLibraryTitle">
     <div class="section-head"><div><h2 id="voiceLibraryTitle">Reusable voice library</h2>
       <p class="hint">Names are library aliases, not verified actor identities. Listen before choosing. Silent or mixed references cannot be recommended.</p></div>
-      <button id="loadVoiceLibraryBtn" class="ghost">Load library</button></div>
+      <button id="loadVoiceLibraryBtn" class="ghost">Browse all / refresh</button></div>
 
     <details class="own-voice-panel"><summary><img src="/assets/brand/icons/voices.svg" alt="" width="22" height="22"> Add your own recording</summary>
       <p class="hint">Use 3–10 seconds of complete, single-speaker speech in WAV format, up to 8 MB. These are reference limits; source-video uploads are separate. Listen before confirming. No background music.</p>
@@ -313,7 +313,7 @@
         <button id="importOwnVoiceBtn" class="primary" type="submit">Import reference</button><p id="ownVoiceStatus" role="status"></p>
       </form>
     </details>
-    <p id="voiceLibrarySummary" role="status">Load the library to inspect reference quality and clone readiness.</p>
+    <p id="voiceLibrarySummary" role="status">Loading installed voice samples…</p>
     <label>Search voices <input id="voiceLibrarySearch" type="search" placeholder="Search Meera, Tara, Kabir…" /></label>
     <label>Show voices<select id="voiceLibraryFilter"><option value="all">All · with quality status</option><option value="audition">With generated audition</option><option value="accepted">Accepted auditions</option><option value="blocked">Blocked references</option></select></label>
     <div id="voiceLibraryList" class="voice-library-list"></div>
@@ -374,5 +374,5 @@
     </div>
   </div>
 
-<script src="/assets/app.js?v=reference-intake-2"></script><script src="/assets/diagnostics.js?v=reference-intake-2"></script><script src="/assets/studio.js?v=reference-intake-2"></script><script src="/assets/voice-library.js?v=reference-intake-2"></script>
-<script src="/assets/speaker-workflow.js?v=reference-intake-2"></script><script src="/assets/compute.js?v=kaggle-foundation-1"></script><script src="/assets/setup.js?v=reference-intake-2"></script></body></html>
+<script src="/assets/app.js?v=comparison-voices-3"></script><script src="/assets/diagnostics.js?v=comparison-voices-3"></script><script src="/assets/studio.js?v=comparison-voices-3"></script><script src="/assets/voice-library.js?v=comparison-voices-3"></script>
+<script src="/assets/speaker-workflow.js?v=comparison-voices-3"></script><script src="/assets/compute.js?v=kaggle-foundation-1"></script><script src="/assets/setup.js?v=comparison-voices-3"></script></body></html>

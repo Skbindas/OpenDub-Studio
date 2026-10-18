@@ -139,7 +139,7 @@ test('voice review submits JSON that the backend can validate', async () => {
     voiceLibraryFilter:{value:'all',addEventListener(){}}
   };
   let submitted;
-  const context = {document:{getElementById:id=>nodes[id]},escapeHtml:value=>String(value??''),
+  const context = {window:{addEventListener(){}},document:{getElementById:id=>nodes[id]},escapeHtml:value=>String(value??''),
     api:async(url,options)=>{
       if(options){submitted=options;return {};}
       return {voices:[{character_id:'voice',character_name:'Voice'}],total:1,verified:0,clone_runtime:{}};
