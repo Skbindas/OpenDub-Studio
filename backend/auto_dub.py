@@ -206,6 +206,8 @@ def execute_auto_dub(job_id: str, project_id: str, options: dict) -> None:
             registry = assign_automatic_voices(base, registry, studio.DATA_ROOT)
             studio.write_character_registry(project_id, registry)
             studio.refresh_dialogue_manifest(project_id)
+        # Translation may have invalidated speech since the initial admission check.
+        synthesis_ready = synthesis_artifacts_ready(base)
         speech_ready = False
         if reusable(4, "analysis/dialogue_manifest.json", "analysis/translated_transcript.json"):
             try:

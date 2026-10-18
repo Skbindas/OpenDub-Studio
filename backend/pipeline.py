@@ -429,6 +429,35 @@ def update_dialogue_manifest_loudness(
     return manifest
 
 
+def _invalidate_translated_outputs(project_root: Path, language: str) -> None:
+    """Retain old final files privately, outside the active output lookup paths."""
+    output = project_root / "output"
+    candidates = [output / name for name in (
+        "dubbed_audio_mix.wav", "mix_manifest.json", "render_qa_report.json",
+        "render_decode_checkpoint.json",
+    )]
+    candidates.extend(output.glob("*_dubbed.mp4"))
+    candidates = [path for path in candidates if path.is_file()]
+    if candidates:
+        archive = output / "stale_translation" / uuid.uuid4().hex
+        archive.mkdir(parents=True)
+        for path in candidates:
+            replace_with_retry(path, archive / path.name)
+
+    from .auto_dub import read_status, save_status
+    state = read_status(project_root)
+    if state:
+        for stage in state.get("stages", []):
+            if stage.get("key") in {"multi_character_tts", "vocal_removal_render"}:
+                stage.update(status="pending", percent=0)
+        state.update(auto_download_ready=False, rendered_video_url=None)
+        if state.get("status") == "completed":
+            state["status"] = "awaiting_review"
+        if isinstance(state.get("options"), dict):
+            state["options"]["target_language"] = language
+        save_status(project_root, state)
+
+
 def update_dialogue_manifest_translation(
     *, manifest_path: Path, translated_result: dict[str, Any]
 ) -> dict[str, Any]:
@@ -445,12 +474,22 @@ def update_dialogue_manifest_translation(
     }
     completed = 0
     errors = 0
+    audio_changed = False
+    target = normalize_language_code(translated_result.get("target_language"))
     for unit in manifest.get("units", []):
         row = by_index.get(int(unit.get("segment_index", 0)))
-        if row is None:
-            continue
-        text = (row.get("translated_text") or "").strip()
-        error = row.get("translation_error")
+        previous = unit.get("translation") or {}
+        previous_target = normalize_language_code(previous.get("target_language") or manifest.get("target_language"))
+        text = ((row or {}).get("translated_text") or "").strip()
+        error = (row or {}).get("translation_error")
+        changed = previous_target != target or str(previous.get("text") or "").strip() != text or bool(error)
+        if changed:
+            audio_changed = True
+            for stage in ("tts", "timing", "loudness"):
+                unit[stage] = {"status": "pending", "updated_at": _now()}
+            if row is not None:
+                for key in ("dub_audio", "fitted_audio", "normalized_audio", "synthesis_duration_check"):
+                    row.pop(key, None)
         status = "completed" if text and not error else "error" if error else "pending"
         unit["translation"] = {
             "status": status,
@@ -478,6 +517,11 @@ def update_dialogue_manifest_translation(
         "error_units": errors,
         "updated_at": _now(),
     }
+    if audio_changed:
+        _invalidate_translated_outputs(manifest_path.parent.parent, target)
+        translated_path = manifest_path.parent / "translated_transcript.json"
+        if translated_path.is_file():
+            _atomic_write_manifest(translated_path, translated_result)
     _atomic_write_manifest(manifest_path, manifest)
     return manifest
 
