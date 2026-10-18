@@ -112,6 +112,19 @@ Created and maintained by **Suhaib · [@Skbindas](https://github.com/Skbindas)**
 
 **Simple workflow:** Upload video → choose language → review character voices → preview → export. Model/manual-stage settings live under Advanced. Local and Kaggle are explicit choices; cloud allocation is not guaranteed.
 
+## End-to-end workflow: how to use
+
+1. **Prepare and launch.** Complete the installation above, then configure [local engines](docs/LOCAL_SETUP.md) or [personal Kaggle processing](docs/KAGGLE_SETUP.md). Run `start.bat` or `sh start.sh`, open the printed URL and resolve missing items under **Setup & readiness**.
+2. **Create a project and upload.** Add your authorized source video, choose the source and target languages, and select Local or Kaggle. A fresh clone supplies no private model cache, reference voice bank or sample film.
+3. **Analyze the source.** Run analysis and inspect the transcript, dialogue boundaries and proposed speakers. Correct missed words, overlapping speech and split/merged speakers before assigning voices. Automatic age/gender hints require review.
+4. **Choose consistent character voices.** Open **Voice library → Add your own recording** for a clean single-speaker 3–10 second WAV with its exact transcript and permission confirmations. Review actual voice auditions and lock a suitable assignment for each character. No default movie voice pack is supplied.
+5. **Translate and review.** Continue the configured translation stage, then check meaning, language and speakable duration. Hindi/English workflows are implemented; validate the chosen source/target pair yourself. Editing translated text or changing target language invalidates affected speech and downstream outputs so old audio is not reused silently.
+6. **Generate and fit speech.** Continue synthesis using the reviewed character assignments. Inspect content and timing flags, listen to difficult lines and correct takes before proceeding. Timing adjustment cannot guarantee natural delivery or perfect lip synchronization.
+7. **Preserve backgrounds and mix.** Continue separation/mixing and listen for source speech leakage, missing ambience and clipping. The default uses the estimated instrumental stem; neural separation cannot promise lossless recovery of background music/effects.
+8. **Preview, render and download.** Play the actual dubbed preview, checking every character and scene transition. Resolve review/QA blocks and render the final video. Technical verification supplements listening acceptance. Follow saved progress after refresh/restart instead of submitting duplicate remote jobs.
+
+Advanced exposes manual stage/model controls. If processing waits for credentials, model access, voice review or Kaggle allocation, resolve that specific state. See [detailed workflow and recovery](docs/ARCHITECTURE.md) and [first-run troubleshooting](docs/QUICK_START.md).
+
 **Voice library:** A clean source checkout contains no bundled movie recordings or movie catalog. Import your own authorized references. Meera, Tara, Kabir and other legacy names are stable aliases when corresponding private entries exist; they are not a pack supplied to new users. Silent, mixed, invalid and unreviewed references must not become automatic defaults. Existing private evidence/audio is preserved outside source distribution.
 
 **Licensing:** Our application code is MIT. OmniVoice's official model card distinguishes Apache-2.0 code from non-commercial pretrained weights. Check the pinned model terms and asset permissions before your use case; this repository does not grant rights to films or voice performances.
@@ -125,6 +138,36 @@ Local-first, open-source AI dubbing studio for video and movie localization.
 ## Automated tests
 
 Run the application regression suite and frontend checks using the [testing guide](docs/TESTING.md). It documents CI dependencies, commands, skipped optional integrations and the distinction between technical checks and real-media listening acceptance.
+
+From the repository root, with the development environment and test dependencies installed:
+
+```sh
+python scripts/check_dependencies.py
+python -m pytest -v -W error::DeprecationWarning -k "not feature_length"
+node --test tests/test_studio_frontend.cjs tests/test_public_alpha_frontend.cjs tests/test_voice_browser.cjs
+git diff --check
+```
+
+Use `.\.venv\Scripts\python.exe` on Windows or `.venv/bin/python` on POSIX if your environment is not activated. Waveform integration tests need the additional CPU PyTorch dependency documented in the testing guide. Optional models and feature-length processing are not certified by a core test pass.
+
+## Project repository structure
+
+```text
+OpenDub-Studio/
+├── backend/                 FastAPI, analysis, speakers, dubbing, jobs and QA
+├── web/                     Browser studio, voice review and brand assets
+├── scripts/                 Launcher, diagnostics and advanced utilities
+├── tests/                   Automated software tests
+├── docs/                    Installation, usage, Kaggle and deployment guides
+├── THIRD_PARTY_LICENSES/    Component/model terms and notices
+├── .github/                 CI, contribution templates and code ownership
+├── requirements*.txt        Core and optional dependency groups
+├── pyproject.toml           Python package metadata
+├── start.bat / start.sh     Local launch entry points
+└── LICENSE                  MIT application-code license
+```
+
+Generated `runtime/` state, project recordings, voice references, credentials, model weights and exports remain outside source distribution. See [component responsibilities](docs/ARCHITECTURE.md).
 
 ## Goals
 
