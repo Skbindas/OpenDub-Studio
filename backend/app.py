@@ -535,7 +535,7 @@ def refresh_dialogue_manifest(project_id: str) -> dict[str, Any]:
         scenes=scenes,
         registry=registry,
         output_path=previous_path,
-        target_language=item.get("target_language"),
+        target_language=(previous_manifest or {}).get("target_language") or item.get("target_language"),
     )
     if previous_manifest:
         manifest = merge_dialogue_manifest_state(manifest, previous_manifest)

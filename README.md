@@ -4,6 +4,10 @@ Experimental local-first AI video dubbing with speaker review, Hindi dubbing, re
 
 ![OpenDub Studio](web/brand/opendub-wordmark-v2.svg)
 
+**Created and maintained by [Suhaib (@Skbindas)](https://github.com/Skbindas).**
+
+**AI Assistant — Development Support: OpenAI Codex.** See [contributors and acknowledgments](CONTRIBUTORS.md).
+
 **Experimental source alpha.** The MIT application code is provided without user recordings, voice references, rendered videos, transcript samples, training datasets or model weights. Review the setup guides and third-party model terms before processing your own media.
 
 [Quick start](docs/QUICK_START.md) · [Model and asset terms](THIRD_PARTY_LICENSES/COMPONENTS.md) · [Release notes](docs/RELEASE_NOTES_ALPHA.md)
